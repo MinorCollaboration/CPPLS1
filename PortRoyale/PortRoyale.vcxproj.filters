@@ -18,34 +18,40 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\userinterfacebase.h">
+    <ClInclude Include="src\game\error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game.h">
+    <ClInclude Include="src\game\errorcategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\commanddescription.h">
+    <ClInclude Include="src\game\game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\userinterface.h">
+    <ClInclude Include="src\ui\cnsl\state\base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\factory.h">
+    <ClInclude Include="src\ui\cnsl\state\context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\base.h">
+    <ClInclude Include="src\ui\cnsl\state\factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\type.h">
+    <ClInclude Include="src\ui\cnsl\state\menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\context.h">
+    <ClInclude Include="src\ui\cnsl\state\registrar.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\registrar.hpp">
+    <ClInclude Include="src\ui\cnsl\state\type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\cnsl\state\menu.h">
+    <ClInclude Include="src\ui\cnsl\commanddescription.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\cnsl\userinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\userinterfacebase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,25 +59,28 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\userinterfacebase.cpp">
+    <ClCompile Include="src\game\errorcategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game.cpp">
+    <ClCompile Include="src\game\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\cnsl\state\base.cpp">
+    <ClCompile Include="src\ui\cnsl\state\base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\cnsl\state\context.cpp">
+    <ClCompile Include="src\ui\cnsl\state\context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\cnsl\state\factory.cpp">
+    <ClCompile Include="src\ui\cnsl\state\factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\cnsl\userinterface.cpp">
+    <ClCompile Include="src\ui\cnsl\state\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\cnsl\state\menu.cpp">
+    <ClCompile Include="src\ui\cnsl\userinterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\userinterfacebase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

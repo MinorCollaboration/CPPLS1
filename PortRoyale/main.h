@@ -12,11 +12,11 @@
 #endif // _Win32
 
 #include <iostream>
-#include <exception>
+#include <stdexcept>
 #include <system_error>
 
-#include "game/game.h"
-#include "ui/userinterfacebase.h"
-#include "ui/cnsl/userinterface.h"
+#include "src/game/game.h"
+#include "src/ui/userinterfacebase.h"
+#include "src/ui/cnsl/userinterface.h"
 
 #endif // _MAIN_HEADER_INCLUDED

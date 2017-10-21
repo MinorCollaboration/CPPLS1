@@ -153,27 +153,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="game\game.h" />
+    <ClInclude Include="src\game\error.h" />
+    <ClInclude Include="src\game\errorcategory.h" />
+    <ClInclude Include="src\game\game.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="ui\cnsl\commanddescription.h" />
-    <ClInclude Include="ui\cnsl\state\base.h" />
-    <ClInclude Include="ui\cnsl\state\context.h" />
-    <ClInclude Include="ui\cnsl\state\factory.h" />
-    <ClInclude Include="ui\cnsl\state\menu.h" />
-    <ClInclude Include="ui\cnsl\state\registrar.hpp" />
-    <ClInclude Include="ui\cnsl\state\type.h" />
-    <ClInclude Include="ui\cnsl\userinterface.h" />
-    <ClInclude Include="ui\userinterfacebase.h" />
+    <ClInclude Include="src\ui\cnsl\commanddescription.h" />
+    <ClInclude Include="src\ui\cnsl\state\base.h" />
+    <ClInclude Include="src\ui\cnsl\state\context.h" />
+    <ClInclude Include="src\ui\cnsl\state\factory.h" />
+    <ClInclude Include="src\ui\cnsl\state\menu.h" />
+    <ClInclude Include="src\ui\cnsl\state\registrar.hpp" />
+    <ClInclude Include="src\ui\cnsl\state\type.h" />
+    <ClInclude Include="src\ui\cnsl\userinterface.h" />
+    <ClInclude Include="src\ui\userinterfacebase.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="game\game.cpp" />
+    <ClCompile Include="src\game\errorcategory.cpp" />
+    <ClCompile Include="src\game\game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ui\cnsl\state\base.cpp" />
-    <ClCompile Include="ui\cnsl\state\context.cpp" />
-    <ClCompile Include="ui\cnsl\state\factory.cpp" />
-    <ClCompile Include="ui\cnsl\state\menu.cpp" />
-    <ClCompile Include="ui\cnsl\userinterface.cpp" />
-    <ClCompile Include="ui\userinterfacebase.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\base.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\context.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\factory.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\menu.cpp" />
+    <ClCompile Include="src\ui\cnsl\userinterface.cpp" />
+    <ClCompile Include="src\ui\userinterfacebase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
