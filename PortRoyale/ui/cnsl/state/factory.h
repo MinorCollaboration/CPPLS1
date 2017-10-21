@@ -11,33 +11,33 @@
 
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+namespace state
+{
+	class BaseInterface;
+
+	typedef std::function<BaseInterface*(Context& context)> Assembler;
+
+	class Factory
 	{
-		namespace state
-		{
-			class BaseInterface;
+		typedef std::unordered_map<Type, Assembler, utils::EnumClassHash> AssemblersMap;
 
-			typedef std::function<BaseInterface*(Context& content)> Assembler;
+	private:
+		Factory() noexcept;
 
-			class Factory
-			{
-				// TODO: Rewrite
-				typedef std::unordered_map<Type, Assembler, utils::EnumClassHash> AssemblersMap;
-			private:
-				Factory() noexcept;
+		AssemblersMap assemblers;
 
-				AssemblersMap assemblers;
+	public:
+		static Factory& GetInstance() noexcept;
 
-			public:
-				static Factory& GetInstance() noexcept;
+		void AddAssembler(const Type type, Assembler assembler);
 
-				void AddAssembler(const Type type, Assembler assembler);
+		BaseInterface* ConstructDefaultState(Context& context) const;
+		BaseInterface* Construct(const Type type, Context& context) const;
+	}; // class Factory
+} // namespace state
+} // namespace cnsl
+} // namespace ui
 
-				BaseInterface* ConstructDefaultState(Context& context) const;
-				BaseInterface* Construct(const Type type, Context& context) const;
-			};
-		}
-	}
-}
-
-#endif
+#endif // #ifndef UI_CNSL_STATE_FACTORY_HEADER_INCLUDED

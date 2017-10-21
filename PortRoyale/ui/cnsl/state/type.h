@@ -3,17 +3,21 @@
 
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+namespace state
+{
+	enum class Type
 	{
-		namespace state
-		{
-			enum class Type
-			{
-				MENU,
-				MAP,
-			}
-		}
-	}
-}
+		MENU,
+		HERO_CREATION,
+		HERO_SELECTION,
+		DUNGEON_SELECTION,
+		MAP,
+		ROOM
+	}; // enum class Type
+} // namespace state
+} // namespace cnsl
+} // namespace ui
 
-#endif
+#endif // #ifndef UI_CNSL_STATE_TYPE_HEADER_INCLUDED

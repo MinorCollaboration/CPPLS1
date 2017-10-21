@@ -5,4 +5,4 @@ ui::UserInterfaceBase::UserInterfaceBase(game::Game& game) noexcept :
 {
 }
 
-	ui::UserInterfaceBase::~UserInterfaceBase() noexcept = default;
+ui::UserInterfaceBase::~UserInterfaceBase() noexcept = default;

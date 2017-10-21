@@ -21,4 +21,4 @@ namespace ui
 	}; // class UserInterfaceBase
 } // namespace ui
 
-#endif // UI_USERINTERFACEBASE_HEADER_INCLUDED
+#endif // #ifndef UI_USERINTERFACEBASE_HEADER_INCLUDED

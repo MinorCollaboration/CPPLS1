@@ -9,34 +9,34 @@
 
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+namespace state
+{
+	enum class Type;
+	class Context;
+
+	template<typename State>
+	class Registrar
 	{
-		namespace state
+	public:
+		Registrar(const Type type)
 		{
-			enum class Type;
-			class Context;
-
-			template<typename State>
-			class Registrar
+			auto assembler = [](Context& context)
 			{
-			public:
-				Registrar(const Type type)
-				{
-					auto assembler = [](Context& context)
-					{
-						return (BaseInterface*)new State(context);
-					};
-
-					Factory::GetInstance().AddAssembler(type, Assembler(assembler));
-				}
-
-				int Dummy() const noexcept
-				{
-					return 0;
-				}
+				return (BaseInterface*)new State(context);
 			};
-		}
-	}
-}
 
-#endif
+			Factory::GetInstance().AddAssembler(type, Assembler(assembler));
+		}
+
+		int Dummy() const noexcept
+		{
+			return 0;
+		}
+	}; // class Registrar
+} // namespace state
+} // namespace cnsl
+} // namespace ui
+
+#endif // UI_CNSL_STATE_REGISTRAR_HEADER_INCLUDED

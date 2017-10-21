@@ -4,16 +4,6 @@ using namespace ui::cnsl;
 
 void UserInterface::ExitCommandHandler(utils::cmd::Command& command)
 {
-	Exit();
-}
-
-void UserInterface::GameOver()
-{
-	gameOver = true;
-}
-
-void UserInterface::Exit() noexcept
-{
 	shouldExit = true;
 }
 
@@ -23,7 +13,7 @@ void UserInterface::BackCommandHandler(utils::cmd::Command& command)
 }
 
 UserInterface::UserInterface(game::Game& game) noexcept :
-UserInterface(game, std::cin)
+	UserInterface(game, std::cin)
 {
 }
 
@@ -37,7 +27,7 @@ UserInterface::UserInterface(game::Game& game, std::istream& inputStream) noexce
 UserInterface::~UserInterface() noexcept
 {
 	// Delete the states.
-	for (auto* const state : states)
+	for (auto* const state: states)
 		delete state;
 }
 
@@ -63,7 +53,7 @@ void UserInterface::Start()
 
 		if (errorBuffer == utils::cmd::Error::COMMAND_NOT_REGISTERED)
 		{
-			DrawConsole("Invalid command");
+			DrawConsole("Invalid command: '" + command.command + "'.");
 		}
 		else if (errorBuffer)
 		{
@@ -102,7 +92,6 @@ void UserInterface::GoToPreviousState()
 		return;
 	}
 
-	states.back()->Terminate();
 	delete states.back();
 	states.pop_back();
 
@@ -133,14 +122,14 @@ void UserInterface::DrawConsole() const
 
 	std::cout << std::endl << std::endl << "The following commands are available:";
 
-	for (const auto& command : GetAvailableCommands())
+	for (const auto& command: GetAvailableCommands())
 	{
 		std::cout << std::endl << command.command;
 
-		/*for (auto& parameter: command.parameters)
+		for (auto& parameter: command.parameters)
 		{
-		std::cout << " <" << parameter << '>';
-		}*/
+			std::cout << " <" << parameter << '>';
+		}
 
 		std::cout << " - " << command.description;
 	}
@@ -148,7 +137,7 @@ void UserInterface::DrawConsole() const
 	std::cout << std::endl << std::endl;
 }
 
-void UserInterface::DrawConsole(const char* extraMessage) const
+void UserInterface::DrawConsole(const std::string extraMessage) const
 {
 	DrawConsole();
 
@@ -157,23 +146,20 @@ void UserInterface::DrawConsole(const char* extraMessage) const
 
 std::vector<CommandDescription> UserInterface::GetAvailableCommands() const
 {
-	CommandDescription** commandDescriptions;
+	std::vector<CommandDescription> commandDescriptions;
 	if (GetState() != nullptr)
 		GetState()->GetAvailableCommands(commandDescriptions);
 
-	if (!gameOver)
-	{
-		CommandDescription backCommandDescription;
-		backCommandDescription.command = "Back";
-		backCommandDescription.description = "Go to the previous screen.";
+	CommandDescription backCommandDescription;
+	backCommandDescription.command = "Back";
+	backCommandDescription.description = "Go to the previous screen.";
 
-		CommandDescription exitCommandDescription;
-		exitCommandDescription.command = "Exit";
-		exitCommandDescription.description = "Exit the game.";
+	CommandDescription exitCommandDescription;
+	exitCommandDescription.command = "Exit";
+	exitCommandDescription.description = "Exit the game.";
 
-		commandDescriptions.emplace_back(std::move(backCommandDescription));
-		commandDescriptions.emplace_back(std::move(exitCommandDescription));
-	}
+	commandDescriptions.emplace_back(std::move(backCommandDescription));
+	commandDescriptions.emplace_back(std::move(exitCommandDescription));
 
 	return commandDescriptions;
 }

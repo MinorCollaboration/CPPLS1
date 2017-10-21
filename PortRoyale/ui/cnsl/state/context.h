@@ -5,23 +5,23 @@
 
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+	class UserInterface;
+
+namespace state
+{
+	class Context
 	{
-		class UserInterface;
+	public:
+		Context(UserInterface& userInterface, game::Game& game) noexcept;
 
-		namespace state
-		{
-			class Context
-			{
-			public:
-				Context(UserInterface& userInterface, game::Game& game) noexcept;
+		UserInterface&	userInterface;
+		
+		game::Game&		game;
+	}; // class Context
+} // namespace state
+} // namespace cnsl
+} // namespace ui
 
-				UserInterface&	userInterface;
-
-				game::Game&		game;
-			};
-		}
-	}
-}
-
-#endif
+#endif // #ifndef UI_CNSL_STATE_CONTEXT_HEADER_INCLUDED

@@ -1,18 +1,21 @@
 #ifndef UI_CNSL_COMMANDDESCRIPTION_HEADER_INCLUDED
 #define UI_CNSL_COMMANDDESCRIPTION_HEADER_INCLUDED
 
+#include <vector>
+#include <string>
+
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+	class CommandDescription
 	{
-		class CommandDescription
-		{
-		public:
-			char* command;		// pointer of char string
-			char* description;	// pointer of char string
-			char** parameters;	// pointer Array of char strings
-		}; // class CommandDescription
-	} // namespace cnsl
+	public:
+		std::string command;
+		std::string description;
+		std::vector<std::string> parameters;
+	}; // class CommandDescription
+} // namespace cnsl
 } // namespace ui
 
 #endif // #ifndef UI_CNSL_COMMANDDESCRIPTION_HEADER_INCLUDED

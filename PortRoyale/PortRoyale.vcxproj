@@ -71,10 +71,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Utilities/include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)Utilities/include;$(BOOST_ROOT);$(IncludePath)</IncludePath>
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <LibraryPath>$(BOOST_ROOT)lib/x86d;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)Utilities/include;$(BOOST_ROOT);$(IncludePath)</IncludePath>
+    <LibraryPath>$(BOOST_ROOT)lib/x64d;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,10 +94,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -153,6 +159,7 @@
     <ClInclude Include="ui\cnsl\state\base.h" />
     <ClInclude Include="ui\cnsl\state\context.h" />
     <ClInclude Include="ui\cnsl\state\factory.h" />
+    <ClInclude Include="ui\cnsl\state\menu.h" />
     <ClInclude Include="ui\cnsl\state\registrar.hpp" />
     <ClInclude Include="ui\cnsl\state\type.h" />
     <ClInclude Include="ui\cnsl\userinterface.h" />
@@ -164,6 +171,7 @@
     <ClCompile Include="ui\cnsl\state\base.cpp" />
     <ClCompile Include="ui\cnsl\state\context.cpp" />
     <ClCompile Include="ui\cnsl\state\factory.cpp" />
+    <ClCompile Include="ui\cnsl\state\menu.cpp" />
     <ClCompile Include="ui\cnsl\userinterface.cpp" />
     <ClCompile Include="ui\userinterfacebase.cpp" />
   </ItemGroup>

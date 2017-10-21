@@ -2,10 +2,11 @@
 #define UI_CNSL_USERINTERFACE_HEADER_INCLUDED
 
 #include <iostream>
+#include <vector>
 #include <functional>
 
 #ifdef _WIN32
-  #include <stdlib.h>
+ #include <stdlib.h>
 #endif // _WIN32
 
 #include <utils/cmd/commandhandler.hpp>
@@ -24,44 +25,43 @@
 
 namespace ui
 {
-	namespace cnsl
+namespace cnsl
+{
+	class UserInterface :
+		public utils::cmd::CommandHandler,
+		public UserInterfaceBase
 	{
-		class UserInterface :
-			public UserInterfaceBase
-		{
-			typedef state::BaseInterface** StatesContainerNew;
-			typedef std::vector<state::BaseInterface*> StatesContainer;
-		private:
-			std::ifstream&		inputStream;
+		typedef std::vector<state::BaseInterface*> StatesContainer;
 
-			StatesContainer		states;
-			state::Context		stateContext;
+	private:
+		std::istream&		inputStream;
 
-			bool				shouldExit		= false;
-			bool				gameOver		= false;
+		StatesContainer		states;
+		state::Context		stateContext;
 
-			void ExitCommandHandler(utils::cmd::Command& command);
-			void BackCommandHandler(utils::cmd::Command& command);
-		public:
-			UserInterface(game::Game& game) noexcept;
-			UserInterface(game::Game& game, std::ifstream& inputStream) noexcept;
+		bool				shouldExit		= false;
 
-			~UserInterface() noexcept;
+		void ExitCommandHandler(utils::cmd::Command& command);
+		void BackCommandHandler(utils::cmd::Command& command);
 
-			void Start() override;
+	public:
+		UserInterface(game::Game& game) noexcept;
+		UserInterface(game::Game& game, std::istream& inputStream) noexcept;
 
-			state::BaseInterface* GetState() const noexcept;
-			void SetState(const state::Type type);
-			void GoToPreviousState();
+		~UserInterface() noexcept;
 
-			void ClearConsole() const noexcept;
-			void DrawConsole() const;
-			void DrawConsole(const char* extraMessage) const;
-			void GameOver();
-			void Exit() noexcept;
-			std::vector<CommandDescription> GetAvailableCommands() const;
-		};
-	}
-}
+		void Start() override;
 
-#endif // UI_CNSL_USERINTERFACE_HEADER_INCLUDED
+		state::BaseInterface* GetState() const noexcept;
+		void SetState(const state::Type type);
+		void GoToPreviousState();
+
+		void ClearConsole() const noexcept;
+		void DrawConsole() const;
+		void DrawConsole(const std::string extraMessage) const;
+		std::vector<CommandDescription> GetAvailableCommands() const;
+	}; // class UserInterface
+} // namespace cnsl
+} // namespace ui
+
+#endif // #ifndef UI_CNSL_USERINTERFACE_HEADER_INCLUDED
