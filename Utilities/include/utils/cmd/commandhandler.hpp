@@ -7,7 +7,7 @@
 #include <functional>
 #include <algorithm>
 
-#include <boost/noncopyable.hpp>
+//#include <boost/noncopyable.hpp>
 
 #include "errorcategory.h"
 #include "command.hpp"

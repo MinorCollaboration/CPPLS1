@@ -5,20 +5,20 @@
 #include <sstream>
 #include <string>
 #include <vector>
-//#include <system_error>
+#include <system_error>
 
 //#include <boost/noncopyable.hpp>
 
-//#include "errorcategory.h"
+#include "errorcategory.h"
 
 namespace
 {
 	void CheckStreamValidity(const std::istream& stream)
 	{
 		if (stream.fail())
-			throw -1;//throw std::system_error(utils::cmd::Error::INVALID_INPUT_FORMAT);
+			throw std::system_error(utils::cmd::Error::INVALID_INPUT_FORMAT);
 		else if (!stream)
-			throw -1;//throw std::system_error(utils::cmd::Error::STREAM_ERROR);
+			throw std::system_error(utils::cmd::Error::STREAM_ERROR);
 	}
 } // namespace
 
