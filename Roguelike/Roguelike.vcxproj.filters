@@ -42,10 +42,10 @@
     <ClCompile Include="src\game\errorcategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\cnsl\state\map.cpp">
+    <ClCompile Include="src\ui\cnsl\state\gameover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\cnsl\state\gameover.cpp">
+    <ClCompile Include="src\game\port.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,9 +86,6 @@
     <ClInclude Include="src\game\errorcategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\cnsl\state\map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -98,9 +95,24 @@
     <ClInclude Include="src\game\ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\port.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\cannon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="heroes\Bear Dalton.hero" />
     <Text Include="heroes\Manly Man.hero" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ships.csv" />
+    <None Include="ports.csv" />
+    <None Include="itemAmount.csv" />
+    <None Include="itemPrice.csv" />
   </ItemGroup>
 </Project>

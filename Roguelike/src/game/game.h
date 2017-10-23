@@ -2,18 +2,23 @@
 #define GAME_GAME_HEADER_INCLUDED
 
 #include <system_error>
+#include <array>
 
 #include "errorcategory.h"
+#include "port.h"
 
 namespace game
 {
 	class Game
 	{
 	private:
+		int				goldPieces;
 		bool			isRunning;
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
+		
+		PortsContainer	ports; // Currently 24 ports available
 
 		void OnMove();
 	public:
@@ -28,6 +33,9 @@ namespace game
 
 		bool IsRunning() const;
 		bool IsCleared() const;
+
+		void UseGold(const int amount);
+		void AddGold(const int amount);
 
 		void Clear();
 

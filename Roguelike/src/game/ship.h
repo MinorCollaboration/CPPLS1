@@ -12,7 +12,7 @@ namespace game
 	class Ship
 	{
 	private:
-		char*	type const;
+		char*	const type;
 		int		price;
 		int		loadSize;
 		int		cannonSize;

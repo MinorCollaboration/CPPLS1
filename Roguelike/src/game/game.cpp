@@ -78,6 +78,19 @@ void Game::Clear()
 	isCleared = true;
 }
 
+void Game::UseGold(const int amount)
+{
+	if (goldPieces - amount > 0)
+		goldPieces -= amount;
+	else
+		throw std::system_error(Error::NOT_ENOUGH_GOLD);
+}
+
+void Game::AddGold(const int amount)
+{
+	goldPieces += amount;
+}
+
 void Game::OnMove()
 {
 	OnChange(); // It's outside the if so will always be called after a movement

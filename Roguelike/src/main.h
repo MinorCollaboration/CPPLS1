@@ -6,6 +6,7 @@
  #ifdef _DEBUG
   #define _CRTDBG_MAP_ALLOC
   #define _CRTDBG_MAP_ALLOC_NEW
+  #define _CRT_SECURE_NO_WARNINGS
   #include <stdlib.h>
   #include <crtdbg.h>
  #endif // _DEBUG 

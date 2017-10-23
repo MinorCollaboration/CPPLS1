@@ -10,15 +10,7 @@ namespace state
 	enum class Type
 	{
 		MENU,
-		HERO_CREATION,
-		HERO_SELECTION,
-		SAVE_SELECTION,
-		DUNGEON_SELECTION,
-		FIGHT,
 		GAMEOVER,
-		MAP,
-		ROOM,
-		BAG
 	}; // enum class Type
 } // namespace state
 } // namespace cnsl
