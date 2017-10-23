@@ -1,24 +1,35 @@
 #include "port.h"
 
-#include <algorithm>
-#include <functional>
+#include <algorithm> 
+#include <functional> 
 #include <cctype>
 #include <locale>
 
 using namespace game;
-using namespace std;
-
-namespace
-{
-	char const* PORT_FILES_FOLDER = "./";
-	char const* PORT_FILE_EXTENSION = ".csv";
-}
 
 PortsContainer game::ParsePort(std::istream& stream)
 {
 	PortsContainer ports;
 
-	return ports;
+	std::string portLine;
+	while (std::getline(stream, portLine))
+	{
+		if (!stream)
+			throw std::system_error(Error::STREAM_ERROR);
+
+		if (portLine.empty() || portLine[0] != '#')
+			continue;
+
+		Port portje;
+
+		portje.name = "hoi";
+		portje.availableShips = {};
+
+		std::string szportLine = portLine.substr(1, portLine.length() - 2);
+		std::stringstream ss(szportLine);
+	}
+
+	return PortsContainer();
 }
 
 PortsContainer game::ParsePort(std::istream& stream, std::error_code& errorBuffer)
@@ -37,11 +48,7 @@ PortsContainer game::GetAvailablePorts()
 {
 	PortsContainer ports;
 
-	char* portFilePath;
-	strcpy_s(portFilePath, PORT_FILES_FOLDER);
-	strcat_s(portFilePath, "/ports");
-	strcas_s(portFilePath, PORT_FILE_EXTENSION);
-	std::ifstream stream(portFilePath);
+	std::ifstream stream("./ports.csv");
 
 	std::error_code errorBuffer;
 	ports = ParsePort(stream, errorBuffer);

@@ -10,6 +10,7 @@ Game::Game() :
 	isCleared(true),
 	enableRandomPirates(true)
 {
+	PortsContainer ports = game::GetAvailablePorts();
 }
 
 /** Copy assignment operator */

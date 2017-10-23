@@ -4,12 +4,12 @@
 #include <array>
 #include <system_error>
 #include <string>
+#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <unordered_map>
 #include <stdlib.h>
 
-#include <boost/filesystem.hpp>
+#include "errorcategory.h"
 
 #include "ship.h"
 
@@ -22,8 +22,9 @@ namespace game
 	class Port
 	{
 	private:
-		std::array<Ship, 13> availableShips;
 	public:
+		std::array<Ship*, 13> availableShips;
+		char* name;
 
 	};
 
