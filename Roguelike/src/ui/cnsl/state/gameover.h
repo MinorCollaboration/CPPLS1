@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include "../../../game/nodes/room.h"
-
 #include "../commanddescription.h"
 #include "../userinterface.h"
 

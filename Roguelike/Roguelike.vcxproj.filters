@@ -36,9 +36,6 @@
     <ClCompile Include="src\ui\cnsl\state\factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\dungeon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ui\cnsl\state\context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,39 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\cnsl\state\map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\dungeonlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\dungeonrow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\visitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\corridor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\room.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\horizontalcorridor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\verticalcorridor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\stairsdown.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\stairsup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\nodes\space.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\cnsl\state\gameover.cpp">
@@ -110,9 +74,6 @@
     <ClInclude Include="src\ui\cnsl\commanddescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\dungeon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\cnsl\state\type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -128,61 +89,18 @@
     <ClInclude Include="src\ui\cnsl\state\map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\dungeonlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\dungeonrow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\visitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\corridor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\horizontalcorridor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\verticalcorridor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\nodes\placeholder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\stairsup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\stairsdown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\nodes\space.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\cnsl\state\gameover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="heroes\Bear Dalton.hero" />
     <Text Include="heroes\Manly Man.hero" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="saves\201704191354.save" />
-    <None Include="saves\Dalton.save" />
-    <None Include="saves\Henk.save" />
-    <None Include="saves\Salvatore.save" />
-    <None Include="heroes\Salvatore.hero" />
   </ItemGroup>
 </Project>

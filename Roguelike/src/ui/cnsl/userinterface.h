@@ -28,7 +28,6 @@ namespace ui
 namespace cnsl
 {
 	class UserInterface :
-		public boost::noncopyable,
 		public utils::cmd::CommandHandler,
 		public UserInterfaceBase
 	{

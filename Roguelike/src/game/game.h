@@ -2,12 +2,8 @@
 #define GAME_GAME_HEADER_INCLUDED
 
 #include <system_error>
-#include <vector>
 
 #include "errorcategory.h"
-#include "dungeon.h"
-
-#include "nodes/room.h"
 
 namespace game
 {
@@ -18,11 +14,6 @@ namespace game
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
-		unsigned int	dungeonSeed;
-
-		Dungeon			dungeon;
-
-		unsigned int	dungeonLayer;
 
 		void OnMove();
 	public:
@@ -39,13 +30,6 @@ namespace game
 		bool IsCleared() const;
 
 		void Clear();
-
-		int GetDungeonLayer();
-
-		void SetDungeon(const Dungeon& dungeon);
-		const Dungeon& GetDungeon() const;
-
-		void RandomizeDungeon(const unsigned int layerCount, const unsigned int width, const unsigned int height, const unsigned int seed);
 
 		void OnChange();
 	}; // class Game

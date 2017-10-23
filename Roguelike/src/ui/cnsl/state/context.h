@@ -2,7 +2,6 @@
 #define UI_CNSL_STATE_CONTEXT_HEADER_INCLUDED
 
 #include "../../../game/game.h"
-#include "../../../game/dungeon.h"
 
 namespace ui
 {

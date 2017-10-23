@@ -158,19 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\dungeon.cpp" />
-    <ClCompile Include="src\game\dungeonlayer.cpp" />
-    <ClCompile Include="src\game\dungeonrow.cpp" />
     <ClCompile Include="src\game\errorcategory.cpp" />
-    <ClCompile Include="src\game\nodes\corridor.cpp" />
-    <ClCompile Include="src\game\nodes\horizontalcorridor.cpp" />
-    <ClCompile Include="src\game\nodes\node.cpp" />
-    <ClCompile Include="src\game\nodes\room.cpp" />
-    <ClCompile Include="src\game\nodes\space.cpp" />
-    <ClCompile Include="src\game\nodes\stairsdown.cpp" />
-    <ClCompile Include="src\game\nodes\stairsup.cpp" />
-    <ClCompile Include="src\game\nodes\verticalcorridor.cpp" />
-    <ClCompile Include="src\game\nodes\visitor.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
     <ClCompile Include="src\ui\cnsl\state\gameover.cpp" />
     <ClCompile Include="src\ui\cnsl\state\map.cpp" />
@@ -183,22 +171,9 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\game\dungeon.h" />
-    <ClInclude Include="src\game\dungeonlayer.h" />
-    <ClInclude Include="src\game\dungeonrow.h" />
     <ClInclude Include="src\game\error.h" />
     <ClInclude Include="src\game\errorcategory.h" />
-    <ClInclude Include="src\game\nodes\corridor.h" />
-    <ClInclude Include="src\game\nodes\horizontalcorridor.h" />
-    <ClInclude Include="src\game\nodes\node.h" />
-    <ClInclude Include="src\game\nodes\placeholder.h" />
-    <ClInclude Include="src\game\nodes\room.h" />
-    <ClInclude Include="src\game\nodes\space.h" />
-    <ClInclude Include="src\game\nodes\stairsdown.h" />
-    <ClInclude Include="src\game\nodes\stairsup.h" />
-    <ClInclude Include="src\game\nodes\type.h" />
-    <ClInclude Include="src\game\nodes\verticalcorridor.h" />
-    <ClInclude Include="src\game\nodes\visitor.h" />
+    <ClInclude Include="src\game\ship.h" />
     <ClInclude Include="src\ui\cnsl\commanddescription.h" />
     <ClInclude Include="src\ui\cnsl\state\context.h" />
     <ClInclude Include="src\ui\cnsl\state\gameover.h" />
@@ -221,13 +196,6 @@
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">
       <Project>{0e25ffdf-13fa-4005-87fe-f6db5387d9b2}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="heroes\Salvatore.hero" />
-    <None Include="saves\201704191354.save" />
-    <None Include="saves\Dalton.save" />
-    <None Include="saves\Henk.save" />
-    <None Include="saves\Salvatore.save" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
