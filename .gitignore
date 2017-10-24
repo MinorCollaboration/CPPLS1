@@ -35,3 +35,5 @@ PortRoyale.VC.opendb
 # Custom
 *.sdf
 Roguelike/x64/
+/PortRoyale.VC.db
+/PortRoyale.VC.VC.opendb

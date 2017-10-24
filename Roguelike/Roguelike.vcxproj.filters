@@ -48,6 +48,9 @@
     <ClCompile Include="src\game\port.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="description.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\cannon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="description.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

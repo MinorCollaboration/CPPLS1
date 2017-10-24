@@ -6,6 +6,7 @@ namespace game
 	enum class shipWeight
 	{
 		licht,
+		normaal,
 		log,
 	};
 
