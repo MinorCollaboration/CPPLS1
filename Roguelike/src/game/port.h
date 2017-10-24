@@ -3,7 +3,7 @@
 
 #include <array>
 #include <system_error>
-#include <string>
+#include <string>			// only used for std::getline() to process file lines;
 #include <iostream>
 #include <fstream>
 #include <sstream>

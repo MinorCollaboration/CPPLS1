@@ -1,5 +1,7 @@
 #include "menu.h"
 
+#include <utils/array.hpp>
+
 using namespace ui::cnsl;
 using namespace ui::cnsl::state;
 
@@ -19,7 +21,18 @@ void Menu::Terminate()
 
 void Menu::DrawConsole() const
 {
-	std::cout << "Menu";
+	std::cout << "Menu" << std::endl;
+	
+	utils::Array<int> myArray;
+
+	myArray.addItem(5);
+	myArray.addItem(6);
+
+	std::cout << "the numbers" << std::endl;
+	for (auto elem : myArray)
+	{
+		std::cout << elem << std::endl;
+	}
 }
 
 void Menu::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const

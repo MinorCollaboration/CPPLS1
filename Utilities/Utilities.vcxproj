@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\utils\array.hpp" />
     <ClInclude Include="include\utils\cmd\command.hpp" />
     <ClInclude Include="include\utils\cmd\commandhandler.hpp" />
     <ClInclude Include="include\utils\cmd\errorcategory.h" />
