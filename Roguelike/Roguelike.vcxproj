@@ -170,6 +170,7 @@
     <ClCompile Include="src\ui\cnsl\state\base.cpp" />
     <ClCompile Include="src\ui\userinterfacebase.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="description.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\ui\cnsl\state\base.h" />
     <ClInclude Include="src\ui\userinterfacebase.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="heroes\Bear Dalton.hero" />

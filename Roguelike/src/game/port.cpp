@@ -17,7 +17,7 @@ PortsContainer game::ParsePort(std::istream& stream)
 		if (!stream)
 			throw std::system_error(Error::STREAM_ERROR);
 
-		if (portLine.empty() || portLine[0] != '#')
+		if (portLine.empty() || portLine[0] == '#')
 			continue;
 
 		Port portje;
@@ -27,9 +27,20 @@ PortsContainer game::ParsePort(std::istream& stream)
 
 		std::string szportLine = portLine.substr(1, portLine.length() - 2);
 		std::stringstream ss(szportLine);
+
+		std::string name;
+
+		std::getline(ss, name, ';');
+		char* portname = const_cast<char*>(name.c_str());
+		portje.name = portname;
+
+		if (!stream)
+			throw std::system_error(Error::STREAM_ERROR);
+
+		ports.addItem(&portje);
 	}
 
-	return PortsContainer();
+	return ports;
 }
 
 PortsContainer game::ParsePort(std::istream& stream, std::error_code& errorBuffer)
