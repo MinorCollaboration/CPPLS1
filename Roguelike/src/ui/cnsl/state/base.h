@@ -1,7 +1,7 @@
 #ifndef UI_CNSL_STATE_BASE_HEADER_INCLUDED
 #define UI_CNSL_STATE_BASE_HEADER_INCLUDED
 
-#include <vector>
+#include <utils/array.hpp>
 
 #include "registrar.hpp"
 
@@ -30,7 +30,7 @@ namespace state
 		virtual void Terminate() = 0;
 
 		virtual void DrawConsole() const = 0;
-		virtual void GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const = 0;
+		virtual void GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const = 0;
 	}; // class BaseInterface
 
 	template<typename Derived>

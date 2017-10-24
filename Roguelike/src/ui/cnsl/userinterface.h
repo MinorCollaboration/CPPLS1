@@ -2,7 +2,7 @@
 #define UI_CNSL_USERINTERFACE_HEADER_INCLUDED
 
 #include <iostream>
-#include <vector>
+#include <utils/array.hpp>
 #include <functional>
 
 #ifdef _WIN32
@@ -31,7 +31,7 @@ namespace cnsl
 		public utils::cmd::CommandHandler,
 		public UserInterfaceBase
 	{
-		typedef std::vector<state::BaseInterface*> StatesContainer;
+		typedef utils::Array<state::BaseInterface*> StatesContainer;
 
 	private:
 		std::istream&		inputStream;
@@ -62,7 +62,7 @@ namespace cnsl
 		void DrawConsole(const std::string extraMessage) const;
 		void GameOver();
 		void Exit() noexcept;
-		std::vector<CommandDescription> GetAvailableCommands() const;
+		utils::Array<CommandDescription> GetAvailableCommands() const;
 	}; // class UserInterface
 } // namespace cnsl
 } // namespace ui

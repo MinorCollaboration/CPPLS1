@@ -1,8 +1,8 @@
 #ifndef UI_CNSL_COMMANDDESCRIPTION_HEADER_INCLUDED
 #define UI_CNSL_COMMANDDESCRIPTION_HEADER_INCLUDED
 
-#include <vector>
 #include <string>
+#include <utils/array.hpp>
 
 namespace ui
 {
@@ -13,7 +13,7 @@ namespace cnsl
 	public:
 		char* command;
 		char* description;
-		std::vector<std::string> parameters;
+		utils::Array<char*> parameters;
 	}; // class CommandDescription
 } // namespace cnsl
 } // namespace ui

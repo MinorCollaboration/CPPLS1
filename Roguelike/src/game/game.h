@@ -2,7 +2,7 @@
 #define GAME_GAME_HEADER_INCLUDED
 
 #include <system_error>
-#include <array>
+#include <utils/array.hpp>
 
 #include "errorcategory.h"
 #include "port.h"

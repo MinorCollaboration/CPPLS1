@@ -14,6 +14,7 @@ void Gameover::Initialize()
 {
 	context.userInterface.GameOver();
 	//context.userInterface.RegisterCommand("Save", std::bind(&Gameover::SaveCommandHandler, this, std::placeholders::_1));
+	context.userInterface.UnregisterCommand("Back");
 }
 
 void Gameover::Terminate()
@@ -26,7 +27,7 @@ void Gameover::DrawConsole() const
 	std::cout << std::endl << "Gameover" << std::endl << std::endl << "You have being killed" << std::endl;
 }
 
-void Gameover::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const
+void Gameover::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
 {
 	/*CommandDescription saveCommandDescription;
 	saveCommandDescription.command = "Save";

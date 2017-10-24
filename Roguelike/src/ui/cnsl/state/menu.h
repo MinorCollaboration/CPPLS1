@@ -2,7 +2,6 @@
 #define UI_CNSL_STATE_MENU_HEADER_INCLUDED
 
 #include <iostream>
-#include <vector>
 
 #include "../commanddescription.h"
 #include "../userinterface.h"
@@ -28,7 +27,7 @@ namespace state
 		void Terminate() override;
 
 		void DrawConsole() const override;
-		void GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const override;
+		void GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const override;
 	}; // class Menu
 } // namespace ui
 } // namespace cnsl

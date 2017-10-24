@@ -21,8 +21,11 @@ namespace utils
 		Iterator end();
 
 		T& front();
+		T& front() const;
 		T& back();
+		T& back() const;
 		void addItem(const T& value);
+		void pop_back();
 
 		void reserve(unsigned int capacity);
 		void resize(unsigned int);
@@ -105,7 +108,17 @@ namespace utils
 	}
 
 	template<class T>
+	T& Array<T>::front() const {
+		return buffer[0];
+	}
+
+	template<class T>
 	T& Array<T>::back() {
+		return buffer[_size - 1];
+	}
+
+	template<class T>
+	T& Array<T>::back() const {
 		return buffer[_size - 1];
 	}
 
@@ -116,6 +129,11 @@ namespace utils
 			Log++;
 		}
 		buffer[_size++] = value;
+	}
+
+	template<class T>
+	void Array<T>::pop_back() {
+		_size--;
 	}
 
 	template<class T>

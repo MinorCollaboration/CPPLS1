@@ -1,8 +1,6 @@
 #include "game.h"
 #include <typeinfo>
 
-#include <boost\algorithm\string.hpp>
-
 using namespace game;
 
 Game::Game() :

@@ -48,7 +48,7 @@ void UserInterface::Start()
 	RegisterCommand<>("Back", std::bind(&UserInterface::BackCommandHandler, this, std::placeholders::_1));
 
 	// Add the first default state and initalize it.
-	states.push_back(state::Factory::GetInstance().ConstructDefaultState(stateContext));
+	states.addItem(state::Factory::GetInstance().ConstructDefaultState(stateContext));
 	GetState()->Initialize();
 
 	// Initial drawing of the console.
@@ -76,7 +76,7 @@ state::BaseInterface* UserInterface::GetState() const noexcept
 {
 	if (states.empty())
 		return nullptr;
-	return states.back();
+	return states.back(); // states.back();
 }
 
 void UserInterface::SetState(const state::Type type)
@@ -85,7 +85,7 @@ void UserInterface::SetState(const state::Type type)
 	GetState()->Terminate();
 
 	// Put the state into the stack so we can go back to it.
-	states.push_back(state::Factory::GetInstance().Construct(type, stateContext));
+	states.addItem(state::Factory::GetInstance().Construct(type, stateContext));
 
 	// Initialize the new state.
 	GetState()->Initialize();
@@ -137,7 +137,8 @@ void UserInterface::DrawConsole() const
 	{
 		std::cout << std::endl << command.command;
 
-		for (auto& parameter: command.parameters)
+		auto params = command.parameters;
+		for (auto& parameter : params)
 		{
 			std::cout << " <" << parameter << '>';
 		}
@@ -155,9 +156,9 @@ void UserInterface::DrawConsole(const std::string extraMessage) const
 	std::cout << extraMessage << std::endl << std::endl;
 }
 
-std::vector<CommandDescription> UserInterface::GetAvailableCommands() const
+utils::Array<CommandDescription> UserInterface::GetAvailableCommands() const
 {
-	std::vector<CommandDescription> commandDescriptions;
+	utils::Array<CommandDescription> commandDescriptions;
 	if (GetState() != nullptr)
 		GetState()->GetAvailableCommands(commandDescriptions);
 
@@ -167,13 +168,14 @@ std::vector<CommandDescription> UserInterface::GetAvailableCommands() const
 		backCommandDescription.command = "Back";
 		backCommandDescription.description = "Go to the previous screen.";
 
-		CommandDescription exitCommandDescription;
-		exitCommandDescription.command = "Exit";
-		exitCommandDescription.description = "Exit the game.";
-		
-		commandDescriptions.emplace_back(std::move(backCommandDescription));
-		commandDescriptions.emplace_back(std::move(exitCommandDescription));
+		commandDescriptions.addItem(std::move(backCommandDescription));
 	}
+
+	CommandDescription exitCommandDescription;
+	exitCommandDescription.command = "Exit";
+	exitCommandDescription.description = "Exit the game.";
+		
+	commandDescriptions.addItem(std::move(exitCommandDescription));
 
 	return commandDescriptions;
 }
