@@ -25,7 +25,6 @@ void Menu::DrawConsole() const
 
 	for (auto* port : context.game.ports)
 	{
-		port->name[100] = '\0';
 		std::cout << port->name  << std::endl;
 	}
 }

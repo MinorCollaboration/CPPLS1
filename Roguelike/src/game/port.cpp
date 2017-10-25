@@ -7,11 +7,6 @@
 
 using namespace game;
 
-game::Port::~Port()
-{
-	//delete name;
-}
-
 PortsContainer game::ParsePort(std::istream& stream)
 {
 	if (!stream)
@@ -37,11 +32,12 @@ PortsContainer game::ParsePort(std::istream& stream)
 			std::stringstream ss(portLine);
 			char* name = new char[100];
 			while (ss.getline(name, 100, ';')) {
-				if (name == '\0')
-					continue;
+				if (name == '\0') continue;
+
 				Port* port = new Port();
 				port->name = name;
 				ports.addItem(port);
+
 				name = new char[100];
 			}
 			delete name;

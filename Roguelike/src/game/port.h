@@ -23,8 +23,6 @@ namespace game
 	{
 	private:
 	public:
-		~Port();
-
 		//utils::Array<Ship*> availableShips;
 		char* name;
 	};

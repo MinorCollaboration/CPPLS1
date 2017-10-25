@@ -23,6 +23,9 @@ Game & game::Game::operator=(const Game & other)
 
 Game::~Game() noexcept
 {
+	for (auto port : ports) {
+		delete port->name;
+	}
 	ports.clear();
 	//delete &ports;
 	Clear();
