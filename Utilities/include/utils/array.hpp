@@ -177,6 +177,13 @@ namespace utils
 
 	template<class T>
 	void Array<T>::clear() {
+
+		for (int i = 0; i < _size; i++)
+		{
+			delete buffer[i];
+		}
+		delete buffer;
+
 		_capacity = 0;
 		_size = 0;
 		buffer = 0;
