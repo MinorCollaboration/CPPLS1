@@ -8,7 +8,7 @@ Game::Game() :
 	isCleared(true),
 	enableRandomPirates(true)
 {
-	PortsContainer ports = game::GetAvailablePorts();
+	ports = game::GetAvailablePorts();
 }
 
 /** Copy assignment operator */
@@ -29,6 +29,7 @@ game::Game::Game(const Game & other)
 	isRunning = &other.isRunning;
 	isCleared = &other.isCleared;
 	enableRandomPirates = &other.enableRandomPirates;
+	ports = other.ports;
 }
 
 void Game::Start(const int x, const int y, const int z)

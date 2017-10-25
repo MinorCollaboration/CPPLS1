@@ -18,7 +18,7 @@ namespace game
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
 		
-		PortsContainer	ports; // Currently 24 ports available
+		//PortsContainer	ports; // Currently 24 ports available
 
 		void OnMove();
 	public:
@@ -30,6 +30,8 @@ namespace game
 		void Start(const int x, const int y, const int z);
 		void Start();
 		void Stop();
+
+		PortsContainer	ports; // Currently 24 ports available
 
 		bool IsRunning() const;
 		bool IsCleared() const;

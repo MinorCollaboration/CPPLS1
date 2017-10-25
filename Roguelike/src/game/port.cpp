@@ -11,7 +11,10 @@ PortsContainer game::ParsePort(std::istream& stream)
 {
 	PortsContainer ports;
 
+	bool passFirstRow = false;
+
 	std::string portLine;
+	int i = 0;
 	while (std::getline(stream, portLine))
 	{
 		if (!stream)
@@ -22,7 +25,6 @@ PortsContainer game::ParsePort(std::istream& stream)
 
 		Port portje;
 
-		portje.name = "hoi";
 		portje.availableShips = {};
 
 		std::string szportLine = portLine.substr(1, portLine.length() - 2);
@@ -30,14 +32,28 @@ PortsContainer game::ParsePort(std::istream& stream)
 
 		std::string name;
 
-		std::getline(ss, name, ';');
-		char* portname = const_cast<char*>(name.c_str());
-		portje.name = portname;
+		if (!passFirstRow)
+		{
+			while (std::getline(ss, name, ';'))
+			{
+				Port port;
+				char* portname = const_cast<char*>(name.c_str());
+				port.name = portname;
+				ports.addItem(&port);
+			}
+
+			passFirstRow = true;
+		}
+		else
+		{
+			Port port = *ports[i];
+			i++;
+		}
+		
 
 		if (!stream)
 			throw std::system_error(Error::STREAM_ERROR);
 
-		ports.addItem(&portje);
 	}
 
 	return ports;
