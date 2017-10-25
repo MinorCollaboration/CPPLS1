@@ -7,54 +7,54 @@
 
 using namespace game;
 
+game::Port::~Port()
+{
+	//delete name;
+}
+
 PortsContainer game::ParsePort(std::istream& stream)
 {
+	if (!stream)
+		throw std::system_error(Error::STREAM_ERROR);
+
 	PortsContainer ports;
 
 	bool passFirstRow = false;
 
-	std::string portLine;
+	char* portLine = new char[1000000];
 	int i = 0;
-	while (std::getline(stream, portLine))
+	do
 	{
-		if (!stream)
+		if (!stream || !stream.getline(portLine, 1000000)) {
+			delete[] portLine;
 			throw std::system_error(Error::STREAM_ERROR);
+		}
 
-		if (portLine.empty() || portLine[0] == '#')
+		if (stream.gcount() == 0 || portLine[0] == '\0' || portLine[0] == '\ ' || portLine == nullptr || portLine[0] == '#')
 			continue;
 
-		Port portje;
-
-		portje.availableShips = {};
-
-		std::string szportLine = portLine.substr(1, portLine.length() - 2);
-		std::stringstream ss(szportLine);
-
-		std::string name;
-
-		if (!passFirstRow)
-		{
-			while (std::getline(ss, name, ';'))
-			{
-				Port port;
-				char* portname = const_cast<char*>(name.c_str());
-				port.name = portname;
-				ports.addItem(&port);
+		if (!passFirstRow) {
+			std::stringstream ss(portLine);
+			char* name = new char[100];
+			while (ss.getline(name, 100, ';')) {
+				if (name == '\0')
+					continue;
+				Port* port = new Port();
+				port->name = name;
+				ports.addItem(port);
+				name = new char[100];
 			}
-
+			delete name;
 			passFirstRow = true;
-		}
-		else
-		{
-			Port port = *ports[i];
+		} else {
 			i++;
 		}
 		
-
 		if (!stream)
 			throw std::system_error(Error::STREAM_ERROR);
+	} while (!stream.eof());
 
-	}
+	delete[] portLine;
 
 	return ports;
 }
@@ -68,19 +68,13 @@ PortsContainer game::ParsePort(std::istream& stream, std::error_code& errorBuffe
 	catch (std::system_error exception)
 	{
 		errorBuffer = exception.code();
+		return PortsContainer();
 	}
 }
 
 PortsContainer game::GetAvailablePorts()
 {
-	PortsContainer ports;
-
 	std::ifstream stream("./ports.csv");
-
 	std::error_code errorBuffer;
-	ports = ParsePort(stream, errorBuffer);
-	if (errorBuffer)
-		return PortsContainer();
-
-	return ports;
+	return ParsePort(stream, errorBuffer);
 }

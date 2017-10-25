@@ -7,8 +7,10 @@ Game::Game() :
 	isRunning(false),
 	isCleared(true),
 	enableRandomPirates(true)
+	//,ports(game::GetAvailablePorts())
 {
 	ports = game::GetAvailablePorts();
+	auto port = ports[0];
 }
 
 /** Copy assignment operator */
@@ -21,6 +23,8 @@ Game & game::Game::operator=(const Game & other)
 
 Game::~Game() noexcept
 {
+	ports.clear();
+	//delete &ports;
 	Clear();
 }
 

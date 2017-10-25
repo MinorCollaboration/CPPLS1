@@ -3,7 +3,7 @@
 
 #include <utils/array.hpp>
 #include <system_error>
-#include <string>			// only used for std::getline() to process file lines;
+//#include <string>			// only used for std::getline() to process file lines;
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -23,9 +23,10 @@ namespace game
 	{
 	private:
 	public:
-		utils::Array<Ship*> availableShips;
-		char* name;
+		~Port();
 
+		//utils::Array<Ship*> availableShips;
+		char* name;
 	};
 
 	PortsContainer ParsePort(std::istream& stream);

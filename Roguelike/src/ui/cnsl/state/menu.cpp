@@ -22,9 +22,11 @@ void Menu::DrawConsole() const
 	std::cout << "Menu" << std::endl << std::endl;
 
 	std::cout << "Beschikbare havens" << std::endl;
-	for (auto port : *&context.game.ports)
+
+	for (auto* port : context.game.ports)
 	{
-		std::cout << port->name << std::endl;
+		port->name[100] = '\0';
+		std::cout << port->name  << std::endl;
 	}
 }
 
