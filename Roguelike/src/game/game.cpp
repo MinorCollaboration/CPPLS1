@@ -10,7 +10,8 @@ Game::Game() :
 	//,ports(game::GetAvailablePorts())
 {
 	ports = game::GetAvailablePorts();
-	auto port = ports[0];
+	ships = game::GetAvailableShips();
+
 }
 
 /** Copy assignment operator */
@@ -23,11 +24,11 @@ Game & game::Game::operator=(const Game & other)
 
 Game::~Game() noexcept
 {
-	for (auto port : ports) {
+	for (auto port : ports)
 		delete port->name;
-	}
+
 	ports.clear();
-	//delete &ports;
+	ships.clear();
 	Clear();
 }
 

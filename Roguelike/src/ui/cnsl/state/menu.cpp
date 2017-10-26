@@ -25,7 +25,7 @@ void Menu::DrawConsole() const
 
 	for (auto* port : context.game.ports)
 	{
-		std::cout << port->name  << std::endl;
+		std::cout << port->name << std::endl;
 	}
 }
 

@@ -16,11 +16,11 @@ PortsContainer game::ParsePort(std::istream& stream)
 
 	bool passFirstRow = false;
 
-	char* portLine = new char[1000000];
+	char* portLine = new char[1000];
 	int i = 0;
 	do
 	{
-		if (!stream || !stream.getline(portLine, 1000000)) {
+		if (!stream || !stream.getline(portLine, 1000)) {
 			delete[] portLine;
 			throw std::system_error(Error::STREAM_ERROR);
 		}
@@ -32,7 +32,7 @@ PortsContainer game::ParsePort(std::istream& stream)
 			std::stringstream ss(portLine);
 			char* name = new char[100];
 			while (ss.getline(name, 100, ';')) {
-				if (name == '\0') continue;
+				if (name[0] == '\0') continue;
 
 				Port* port = new Port();
 				port->name = name;
@@ -43,6 +43,7 @@ PortsContainer game::ParsePort(std::istream& stream)
 			delete name;
 			passFirstRow = true;
 		} else {
+			// Distances parsing
 			i++;
 		}
 		

@@ -31,7 +31,8 @@ namespace game
 		void Start();
 		void Stop();
 
-		PortsContainer	ports; // Currently 24 ports available
+		PortsContainer	ports;
+		ShipsContainer	ships;
 
 		bool IsRunning() const;
 		bool IsCleared() const;
