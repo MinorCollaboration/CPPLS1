@@ -41,7 +41,6 @@ namespace cnsl
 
 		bool				shouldExit		= false;
 		bool				gameOver		= false;
-		bool				newGame			= true;
 
 		void ExitCommandHandler(utils::cmd::Command& command);
 		void BackCommandHandler(utils::cmd::Command& command);
