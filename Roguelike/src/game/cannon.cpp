@@ -7,7 +7,7 @@ int Cannon::Shoot()
 	return utils::random(minDamage, maxDamage);
 }
 
-CannonContainer game::GetAvailableCannon()
+CannonContainer game::GetAvailableCannons()
 {
 	CannonContainer cannonContainer;
 

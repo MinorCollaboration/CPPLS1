@@ -35,6 +35,7 @@ namespace game
 
 		PortsContainer	ports;
 		ShipsContainer	ships;
+		CannonContainer cannons;
 
 		Port			currentPort;
 		Ship			currentShip;

@@ -11,6 +11,7 @@ Game::Game() :
 {
 	ports = game::GetAvailablePorts();
 	ships = game::GetAvailableShips();
+	cannons = game::GetAvailableCannons();
 }
 
 /** Copy assignment operator */
@@ -31,6 +32,7 @@ Game::~Game() noexcept
 
 	ports.clear();
 	ships.clear();
+	cannons.clear();
 	Clear();
 }
 
@@ -61,7 +63,7 @@ void Game::Start()
 
 	for (int i = 0; i < utils::random(currentShip.cannonSize - 1); i++)
 	{
-		// Add cannon to ship
+		currentShip.AddCannon(cannons[utils::random(cannons.size() - 1)]);
 	}
 
 	AddGold(1000); // Starting cash

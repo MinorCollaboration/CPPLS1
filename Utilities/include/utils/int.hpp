@@ -7,20 +7,24 @@
 
 namespace utils
 {
+	static std::default_random_engine generator(time(0));
+
 	static int random(int min, int max, int seed) {
-		std::default_random_engine generator;
 		generator.seed(seed);
+		std::uniform_int_distribution<int> dist(min, max);
+		return dist(generator);
+	}
+	
+	static int random(int min, int max) {
 		std::uniform_int_distribution<int> dist(min, max);
 		return dist(generator);
 	}
 
 	static int random(int max) {
-		return random(0, max, time(0));
+		return random(0, max);
 	}
 
-	static int random(int min, int max) {
-		return random(min, max, time(0));
-	}
+	
 }
 
 #endif

@@ -7,6 +7,20 @@
 
 using namespace game;
 
+bool Ship::AddCannon(Cannon* cannon)
+{
+	if (cannons.size() < cannonSize) {
+		if (!(size == shipSize::klein && cannon->weight == cannonWeight::HEAVY)) {
+			cannons.addItem(cannon);
+			return true;
+		}
+
+		return false;
+	}
+
+	return false;
+}
+
 ShipsContainer game::ParseShip(std::istream& stream)
 {
 	if (!stream)

@@ -10,6 +10,8 @@
 
 #include "errorcategory.h"
 
+#include "cannon.h"
+
 namespace game
 {
 	class Ship;
@@ -41,10 +43,14 @@ namespace game
 		int		lifePoints;
 		int		maxLifePoints;
 
+		CannonContainer cannons;
+
+		bool	AddCannon(Cannon*);
+		void	RemoveCannon(cannonWeight);
+
 		// Exceptionals
-		shipSize	size	= shipSize::normaal; // klein/(:groot)
-		shipWeight	weight	= shipWeight::normaal; // Licht/log
-		
+		shipSize		size	= shipSize::normaal; // klein/(:groot)
+		shipWeight		weight	= shipWeight::normaal; // Licht/log
 	};
 
 	ShipsContainer ParseShip(std::istream& stream);

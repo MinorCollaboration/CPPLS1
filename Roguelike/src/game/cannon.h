@@ -28,7 +28,7 @@ namespace game
 		int Shoot();
 	};
 
-	CannonContainer GetAvailableCannon();
+	CannonContainer GetAvailableCannons();
 }
 
 #endif
