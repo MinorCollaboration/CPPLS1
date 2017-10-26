@@ -24,6 +24,7 @@
     <ClInclude Include="include\utils\cmd\commandhandler.hpp" />
     <ClInclude Include="include\utils\cmd\errorcategory.h" />
     <ClInclude Include="include\utils\enumclasshash.hpp" />
+    <ClInclude Include="include\utils\int.hpp" />
     <ClInclude Include="include\utils\string.hpp" />
   </ItemGroup>
   <ItemGroup>

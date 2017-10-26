@@ -56,7 +56,15 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			ship->maxLifePoints	= atoi(maxLifePoints);
 
 			if (extras) {
-				bool something = true;
+				if (extras == "klein, licht") {
+					ship->size		= shipSize::klein;
+					ship->weight	= shipWeight::licht;
+				} else if (extras == "klein") 
+					ship->size		= shipSize::klein;
+				else if (extras == "licht")
+					ship->weight	= shipWeight::licht;
+				else if (extras == "log")
+					ship->weight	= shipWeight::log;
 			}
 
 			ships.addItem(ship);

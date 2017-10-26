@@ -7,7 +7,7 @@ const Type newgame::TYPE(Type::NEWGAME);
 
 void newgame::Initialize()
 {
-	context.userInterface.NewGame();
+	//context.userInterface.NewGame();
 	//context.userInterface.RegisterCommand("Save", std::bind(&Gameover::SaveCommandHandler, this, std::placeholders::_1));
 	//context.userInterface.UnregisterCommand("Back");
 }

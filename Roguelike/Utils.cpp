@@ -1,24 +1,9 @@
-#pragma once
-//#include <stdafx.h>
 #include "Utils.h"
 
 namespace Utils {
 
 	std::string getCustomPath() {
 		return "get/rekts/";
-	}
-
-	int Random() { return Random(0, INT_MAX); }
-	int Random(int min) { return Random(0, 10); }
-	int Random(int min, int max)
-	{
-		std::random_device dev;
-		std::default_random_engine dre{ dev() };
-		std::uniform_int_distribution<int> dist{ min, max };
-		int xxx = dist(dre);
-		//
-		//int xxx = min + std::rand() % (max - min + 1);
-		return xxx;
 	}
 
 	void Print(std::string text)
@@ -72,7 +57,8 @@ namespace Utils {
 	}
 	Vector RandomLocation(int width, int height, int floor)
 	{
-		return Location(Random(0, width - 1), Random(0, height - 1), floor);
+		return Location(0, 0, 0);
+		//return Location(utils::random(0, width - 1), utils::random(0, height - 1), floor);
 	};
 
 	Vector Location(int _x, int _y, int _z)
@@ -91,7 +77,7 @@ namespace Utils {
 	{
 		if (perc > 100)
 			perc = 100;
-		int whut = Random(0, 100);
+		int whut = 0;//utils::random(0, 100);
 		return (whut <= perc);//als het random getal gelijk of minder is dat het gekozen perc => true : false
 	}
 

@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="description.cpp" />
+    <ClCompile Include="src\game\cannon.cpp" />
     <ClCompile Include="src\game\errorcategory.cpp" />
     <ClCompile Include="src\game\port.cpp" />
     <ClCompile Include="src\game\ship.cpp" />

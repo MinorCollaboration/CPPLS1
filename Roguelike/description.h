@@ -1,7 +1,8 @@
-#pragma once
+#ifndef DESCRIPTION_HEADER_INCLUDED
+#define DESCRIPTION_HEADER_INCLUDED
+
 #include <string>
 #include <iostream>
-#include "Utils.h"
 #include <list>
 
 class description
@@ -21,3 +22,4 @@ public:
 	~description();
 };
 
+#endif

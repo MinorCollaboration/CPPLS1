@@ -1,7 +1,5 @@
 #include "description.h"
 
-
-
 description::description()
 {
 }
@@ -22,11 +20,11 @@ void description::generateDescription()
 
 	//2*1=2
 	std::string Actie[2] = { "vaart", "vecht zich" };
-	desc.append(Actie[Utils::Random(0, (sizeof(Actie) / sizeof(*Actie)) - 1)] + " ");
+	//desc.append(Actie[utils::random(0, (sizeof(Actie) / sizeof(*Actie)) - 1)] + " ");
 
 	//3*2=6
 	std::string Plek[3] = { "door de zee", "door de golven", "richting de haven" };
-	desc.append(Plek[Utils::Random(0, (sizeof(Plek) / sizeof(*Plek)) - 1)] + ". ");
+	//desc.append(Plek[utils::random(0, (sizeof(Plek) / sizeof(*Plek)) - 1)] + ". ");
 
 	setDescription(desc);
 }

@@ -1,14 +1,12 @@
-#pragma once
+#ifndef UTILS_HEADER_INCLUDED
+#define UTILS_HEADER_INCLUDED
+
 #include <iostream>
 #include <string>
 #include <thread>
-#include <random>
 
 namespace Utils {
 	std::string getCustomPath();
-	int Random();
-	int Random(int);
-	int Random(int, int);
 	void Print(std::string text);
 	void PrintLine(std::string text);
 	void PrintCool(std::string text);
@@ -35,3 +33,4 @@ namespace Utils {
 
 }
 
+#endif
