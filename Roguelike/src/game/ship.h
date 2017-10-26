@@ -16,6 +16,13 @@ namespace game
 
 	typedef utils::Array<Ship*> ShipsContainer;
 
+	enum class shipSize
+	{
+		klein,
+		normaal
+		//groot
+	};
+
 	enum class shipWeight
 	{
 		licht,
@@ -35,8 +42,8 @@ namespace game
 		int		maxLifePoints;
 
 		// Exceptionals
-		char*		size;	// klein/(:groot)
-		shipWeight	weight = shipWeight::normaal; // Licht/log
+		shipSize	size	= shipSize::normaal; // klein/(:groot)
+		shipWeight	weight	= shipWeight::normaal; // Licht/log
 		
 	};
 

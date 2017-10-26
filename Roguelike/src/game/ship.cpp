@@ -37,6 +37,7 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			char* loadSize		= new char[10];
 			char* cannonSize	= new char[10];
 			char* maxLifePoints	= new char[10];
+			char* extras		= new char[20];
 
 			Ship* ship = new Ship();
 
@@ -45,6 +46,7 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			iss.getline(cannonSize, 10, ';');
 			iss.getline(loadSize, 10, ';');
 			iss.getline(maxLifePoints, 10, ';');
+			iss.getline(extras, 20);
 
 			ship->type			= name;
 			ship->price			= atoi(price);
@@ -53,6 +55,10 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			ship->lifePoints	= atoi(maxLifePoints);
 			ship->maxLifePoints	= atoi(maxLifePoints);
 
+			if (extras) {
+				bool something = true;
+			}
+
 			ships.addItem(ship);
 
 			delete price;
@@ -60,6 +66,7 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			delete cannonSize;
 			delete maxLifePoints;
 			delete name;
+			delete extras;
 		}
 
 		if (!stream)
