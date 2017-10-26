@@ -11,7 +11,6 @@ Game::Game() :
 {
 	ports = game::GetAvailablePorts();
 	ships = game::GetAvailableShips();
-
 }
 
 /** Copy assignment operator */
@@ -27,6 +26,9 @@ Game::~Game() noexcept
 	for (auto port : ports)
 		delete port->name;
 
+	for (auto ship : ships)
+		delete ship->type;
+
 	ports.clear();
 	ships.clear();
 	Clear();
@@ -40,19 +42,29 @@ game::Game::Game(const Game & other)
 	ports = other.ports;
 }
 
-void Game::Start(const int x, const int y, const int z)
+/*void Game::Start(const int x, const int y, const int z)
 {
 	if (IsRunning())
 		throw std::system_error(Error::GAME_ALREADY_RUNNING);
 
 	isRunning = true;
 	isCleared = false;
-}
+}*/
 
 void Game::Start()
 {
 	if (IsRunning())
 		throw std::system_error(Error::GAME_ALREADY_RUNNING);
+
+	currentPort = *ports[utils::random(ships.size() - 1)];
+	currentShip = *ships[utils::random(ships.size() - 1)];
+
+	for (int i = 0; i < utils::random(currentShip.cannonSize - 1); i++)
+	{
+		// Add cannon to ship
+	}
+
+	AddGold(1000); // Starting cash
 
 	isRunning = true;
 	isCleared = false;
@@ -97,6 +109,11 @@ void Game::UseGold(const int amount)
 void Game::AddGold(const int amount)
 {
 	goldPieces += amount;
+}
+
+int Game::Gold() const
+{
+	return goldPieces;
 }
 
 void Game::OnMove()

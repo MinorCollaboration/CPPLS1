@@ -2,7 +2,9 @@
 #define GAME_GAME_HEADER_INCLUDED
 
 #include <system_error>
+
 #include <utils/array.hpp>
+#include <utils/int.hpp>
 
 #include "errorcategory.h"
 #include "port.h"
@@ -27,18 +29,22 @@ namespace game
 		Game(const Game& other);
 		Game &operator =(const Game& other);
 
-		void Start(const int x, const int y, const int z);
+		//void Start(const int x, const int y, const int z);
 		void Start();
 		void Stop();
 
 		PortsContainer	ports;
 		ShipsContainer	ships;
 
+		Port			currentPort;
+		Ship			currentShip;
+
 		bool IsRunning() const;
 		bool IsCleared() const;
 
 		void UseGold(const int amount);
 		void AddGold(const int amount);
+		int Gold() const;
 
 		void Clear();
 

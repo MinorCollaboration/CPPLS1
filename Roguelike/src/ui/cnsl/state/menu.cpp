@@ -19,14 +19,7 @@ void Menu::Terminate()
 
 void Menu::DrawConsole() const
 {
-	std::cout << "Menu" << std::endl << std::endl;
-
-	std::cout << "Beschikbare havens" << std::endl;
-
-	for (auto* port : context.game.ports)
-	{
-		std::cout << port->name << std::endl;
-	}
+	std::cout << "Menu";
 }
 
 void Menu::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
