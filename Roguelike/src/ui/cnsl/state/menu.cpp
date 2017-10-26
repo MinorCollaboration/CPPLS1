@@ -8,7 +8,7 @@ const Type Menu::TYPE(Type::MENU);
 void Menu::Initialize()
 {
 	// Register commands.
-	context.userInterface.RegisterCommand<>("NewGame", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::GAMEOVER); });
+	context.userInterface.RegisterCommand<>("NewGame", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::NEWGAME); });
 }
 
 void Menu::Terminate()

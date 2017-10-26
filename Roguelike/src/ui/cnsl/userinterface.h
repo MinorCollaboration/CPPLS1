@@ -41,6 +41,7 @@ namespace cnsl
 
 		bool				shouldExit		= false;
 		bool				gameOver		= false;
+		bool				newGame			= true;
 
 		void ExitCommandHandler(utils::cmd::Command& command);
 		void BackCommandHandler(utils::cmd::Command& command);
@@ -61,6 +62,7 @@ namespace cnsl
 		void DrawConsole() const;
 		void DrawConsole(const std::string extraMessage) const;
 		void GameOver();
+		void NewGame();
 		void Exit() noexcept;
 		utils::Array<CommandDescription> GetAvailableCommands() const;
 	}; // class UserInterface

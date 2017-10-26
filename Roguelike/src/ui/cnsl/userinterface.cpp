@@ -12,6 +12,11 @@ void UserInterface::GameOver()
 	gameOver = true;
 }
 
+void UserInterface::NewGame()
+{
+	newGame = true;
+}
+
 void UserInterface::Exit() noexcept
 {
 	shouldExit = true;

@@ -24,7 +24,7 @@ void Gameover::Terminate()
 
 void Gameover::DrawConsole() const
 {
-	std::cout << std::endl << "Gameover" << std::endl << std::endl << "You have being killed" << std::endl;
+	std::cout << std::endl << "Gameover" << std::endl << std::endl << "You have been killed" << std::endl;
 }
 
 void Gameover::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const

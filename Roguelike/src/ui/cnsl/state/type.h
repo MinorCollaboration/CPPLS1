@@ -11,6 +11,7 @@ namespace state
 	{
 		MENU,
 		GAMEOVER,
+		NEWGAME,
 	}; // enum class Type
 } // namespace state
 } // namespace cnsl
