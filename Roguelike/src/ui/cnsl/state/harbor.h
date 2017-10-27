@@ -19,7 +19,6 @@ namespace ui
 			{
 			private:
 				void BuyCommandHandler(utils::cmd::Command& command);
-				void SellCommandHandler(utils::cmd::Command& command);
 			public:
 				static const Type TYPE;
 

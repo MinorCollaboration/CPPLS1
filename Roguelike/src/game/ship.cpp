@@ -70,14 +70,17 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			ship->maxLifePoints	= atoi(maxLifePoints);
 
 			if (extras) {
-				if (extras == "klein, licht") {
+
+				int strcmp = std::strcmp(extras, "klein,licht");
+
+				if (std::strcmp(extras, "klein, licht") == 0 || std::strcmp(extras, "klein,licht") == 0) {
 					ship->size		= shipSize::klein;
 					ship->weight	= shipWeight::licht;
-				} else if (extras == "klein") 
+				} else if (std::strcmp(extras, "klein") == 0)
 					ship->size		= shipSize::klein;
-				else if (extras == "licht")
+				else if (std::strcmp(extras,"licht") == 0)
 					ship->weight	= shipWeight::licht;
-				else if (extras == "log")
+				else if (std::strcmp(extras, "log") == 0)
 					ship->weight	= shipWeight::log;
 			}
 
