@@ -118,6 +118,18 @@ int Game::Gold() const
 	return goldPieces;
 }
 
+void Game::Repair()
+{
+	int toRepair = currentShip.maxLifePoints - currentShip.lifePoints;
+
+	if (toRepair * 10 <= Gold()) {
+		UseGold(toRepair * 10);
+		currentShip.lifePoints = currentShip.maxLifePoints;
+	}
+	else
+		throw std::system_error(Error::NOT_ENOUGH_GOLD);
+}
+
 void Game::OnMove()
 {
 	OnChange(); // It's outside the if so will always be called after a movement

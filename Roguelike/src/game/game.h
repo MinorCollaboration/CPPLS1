@@ -47,6 +47,8 @@ namespace game
 		void AddGold(const int amount);
 		int Gold() const;
 
+		void Repair();
+
 		void Clear();
 
 		void OnChange();

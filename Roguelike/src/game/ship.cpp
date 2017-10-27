@@ -46,6 +46,7 @@ ShipsContainer game::ParseShip(std::istream& stream)
 			passFirstRow = true;
 		else {
 			std::istringstream iss(shipLine);
+
 			char* name			= new char[100];
 			char* price			= new char[10];
 			char* loadSize		= new char[10];

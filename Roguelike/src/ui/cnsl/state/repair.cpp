@@ -7,11 +7,35 @@ const Type Repair::TYPE(Type::REPAIR);
 
 void Repair::RepairCommandHandler(utils::cmd::Command& command)
 {
-	context.userInterface.Exit();
+	auto ship = &context.game.currentShip;
+
+	int toRepair = ship->maxLifePoints - ship->lifePoints;
+
+	if (toRepair <= 0)
+	{
+		context.userInterface.DrawConsole("Ship already at max hp");
+	}
+	else if (toRepair * 10 > context.game.Gold())
+	{
+		context.userInterface.DrawConsole("Insufficient amount of coins");
+	}
+	else {
+		context.game.Repair();
+		context.userInterface.DrawConsole("Fully restored your ship");
+	}
+
+	return;
 }
 
 void Repair::Initialize()
 {
+	// Test case
+	auto ship = &context.game.currentShip; // Use the reference
+	ship->lifePoints -= 2;
+	// End test case
+
+	context.userInterface.RegisterCommand("Repair", std::bind(&Repair::RepairCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<char>("Repair", std::bind(&Repair::RepairCommandHandler, this, std::placeholders::_1));
 }
 
 void Repair::Terminate()
@@ -29,9 +53,15 @@ void Repair::DrawConsole() const
 
 void Repair::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
 {
-	/*CommandDescription saveCommandDescription;
-	saveCommandDescription.command = "Save";
-	saveCommandDescription.description = "Save the hero stats and exit the game";
+	auto ship = context.game.currentShip;
 
-	commandDescriptionsBuffer.emplace_back(std::move(saveCommandDescription));*/
+	if (ship.maxLifePoints - ship.lifePoints > 0) {
+		CommandDescription repairCommandDescription;
+		repairCommandDescription.command = "Repair";
+		repairCommandDescription.description = "Repair your ship";
+		repairCommandDescription.parameters.addItem(":amount");
+
+		commandDescriptionsBuffer.addItem(repairCommandDescription);
+	}
+	
 }
