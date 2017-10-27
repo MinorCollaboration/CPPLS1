@@ -10,8 +10,15 @@ namespace state
 	enum class Type
 	{
 		MENU,
-		GAMEOVER,
 		NEWGAME,
+		PORT,
+		HARBOR,
+		SAIL,
+		FIGHT,
+		SHOP,
+		SMITH,
+		REPAIR,
+		GAMEOVER,
 	}; // enum class Type
 } // namespace state
 } // namespace cnsl

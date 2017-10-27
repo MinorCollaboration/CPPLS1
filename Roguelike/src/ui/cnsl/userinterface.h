@@ -43,13 +43,13 @@ namespace cnsl
 		bool				gameOver		= false;
 
 		void ExitCommandHandler(utils::cmd::Command& command);
-		void BackCommandHandler(utils::cmd::Command& command);
-
 	public:
 		UserInterface(game::Game& game) noexcept;
 		UserInterface(game::Game& game, std::istream& inputStream) noexcept;
 
 		~UserInterface() noexcept;
+
+		void BackCommandHandler(utils::cmd::Command& command);
 
 		void Start() override;
 

@@ -1,3 +1,4 @@
+#ifndef UI_CNSL_STATE_NEWGAME_HEADER_INCLUDED
 #define UI_CNSL_STATE_NEWGAME_HEADER_INCLUDED
 
 #include <iostream>
@@ -14,8 +15,8 @@ namespace ui
 	{
 		namespace state
 		{
-			class newgame :
-				public Base<newgame>
+			class Newgame :
+				public Base<Newgame>
 			{
 			public:
 				static const Type TYPE;
@@ -32,3 +33,4 @@ namespace ui
 	}
 }
 
+#endif

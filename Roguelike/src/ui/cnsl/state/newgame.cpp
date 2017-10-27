@@ -3,23 +3,21 @@
 using namespace ui::cnsl;
 using namespace ui::cnsl::state;
 
-const Type newgame::TYPE(Type::NEWGAME);
+const Type Newgame::TYPE(Type::NEWGAME);
 
-void newgame::Initialize()
+void Newgame::Initialize()
 {
 	context.game.Start();
 
-	//context.userInterface.NewGame();
-	//context.userInterface.RegisterCommand("Save", std::bind(&Gameover::SaveCommandHandler, this, std::placeholders::_1));
-	//context.userInterface.UnregisterCommand("Back");
+	context.userInterface.RegisterCommand<>("Continue", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::PORT); });
 }
 
-void newgame::Terminate()
+void Newgame::Terminate()
 {
-	//context.userInterface.UnregisterCommand("Save");
+	context.userInterface.UnregisterCommand("Continue");
 }
 
-void newgame::DrawConsole() const
+void Newgame::DrawConsole() const
 {
 	std::cout << "You've being spawned at " << context.game.currentPort.name << std::endl << std::endl;
 
@@ -32,33 +30,11 @@ void newgame::DrawConsole() const
 	std::cout << "What will your first action be during this adventure" << std::endl;
 }
 
-void newgame::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
+void Newgame::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
 {
-	CommandDescription shopCommandDescription;
-	shopCommandDescription.command = "Shop";
-	shopCommandDescription.description = "Go to the shop to by items";
+	CommandDescription continueCommandDescription;
+	continueCommandDescription.command = "Continue";
+	continueCommandDescription.description = "Get to the port to decide your next action";
 
-	CommandDescription smithCommandDescription;
-	smithCommandDescription.command = "Smith";
-	smithCommandDescription.description = "Get to the ship to buy or sell cannons";
-
-	CommandDescription harborCommandDescription;
-	harborCommandDescription.command = "Harbor";
-	harborCommandDescription.description = "Exchange your ship for a new ship";
-
-	CommandDescription sailCommandDescription;
-	sailCommandDescription.command = "Sail";
-	sailCommandDescription.description = "Set sail to the next port";
-	sailCommandDescription.parameters.addItem("port name");
-
-	CommandDescription repairCommandDescription;
-	repairCommandDescription.command = "Repair";
-	repairCommandDescription.description = "Repair you ship for 10 gold pieces for each lifepoint";
-	repairCommandDescription.parameters.addItem(":limit");
-
-	commandDescriptionsBuffer.addItem(shopCommandDescription);
-	commandDescriptionsBuffer.addItem(smithCommandDescription);
-	commandDescriptionsBuffer.addItem(harborCommandDescription);
-	commandDescriptionsBuffer.addItem(sailCommandDescription);
-	commandDescriptionsBuffer.addItem(repairCommandDescription);
+	commandDescriptionsBuffer.addItem(continueCommandDescription);
 }
