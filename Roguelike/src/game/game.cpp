@@ -15,7 +15,6 @@ Game::Game() :
 
 	int distanceSame = game::GetPortDistance(*ports[0], *ports[0]);
 	int distanceDiff = game::GetPortDistance(*ports[0], *ports[2]);
-
 }
 
 /** Copy assignment operator */

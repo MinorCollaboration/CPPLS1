@@ -97,6 +97,7 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 	char* portLine = new char[1000];
 	int column = 0;
 	bool passFirstRow = false;
+
 	do
 	{
 		if (!stream || !stream.getline(portLine, 1000)) {
@@ -137,7 +138,11 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 				while (ss.getline(distance, 5, ';')) {
 					if (columnsPassed == column) {
 						int returnValue = atoi(distance);
+
+						delete name;
 						delete distance;
+						delete[] portLine;
+
 						return returnValue;
 					}
 					else {
