@@ -14,6 +14,7 @@ void Fight::ShootCommandHandler(utils::cmd::Command& command)
 		if (context.game.currentShip.lifePoints <= 0) {
 			context.userInterface.SetState(Type::GAMEOVER);
 		}
+		context.userInterface.DrawConsole("You ended up in a fight, no one won so far");
 		return;
 	}
 	context.userInterface.SetState(Type::SAIL);
