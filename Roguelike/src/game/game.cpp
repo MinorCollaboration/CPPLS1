@@ -12,6 +12,10 @@ Game::Game() :
 	ports = game::GetAvailablePorts();
 	ships = game::GetAvailableShips();
 	cannons = game::GetAvailableCannons();
+
+	int distanceSame = game::GetPortDistance(*ports[0], *ports[0]);
+	int distanceDiff = game::GetPortDistance(*ports[0], *ports[2]);
+
 }
 
 /** Copy assignment operator */

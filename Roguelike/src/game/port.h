@@ -23,14 +23,21 @@ namespace game
 	{
 	private:
 	public:
-		//utils::Array<Ship*> availableShips;
+		utils::Array<Ship*> availableShips;
 		char* name;
+
+		void EnterPort(ShipsContainer);
+		void LeavePort();
 	};
 
 	PortsContainer ParsePort(std::istream& stream);
 	PortsContainer ParsePort(std::istream& stream, std::error_code& errorBuffer);
 
 	PortsContainer GetAvailablePorts();
+
+	int			   ParsePortDis(std::istream& stream, Port, Port);
+	int			   ParsePortDis(std::istream& stream, Port, Port, std::error_code& errorBuffer);
+	int			   GetPortDistance(Port, Port);
 }
 
 #endif
