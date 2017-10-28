@@ -6,17 +6,6 @@
 
 namespace utils
 {
-	int istrcmp(const char* a, const char* b) noexcept
-	{
-		for (;; a++, b++)
-		{
-			int d = tolower(*a) - tolower(*b);
-			if (d != 0 || !*a)
-				return d;
-		}
-		return 0;
-	}
-
 	std::string& ltrim(std::string& string, const char* characters)
 	{
 		string.erase(0, string.find_first_not_of(characters));
