@@ -60,8 +60,8 @@ void Fight::FleeCommandHandler(utils::cmd::Command& command)
 void Fight::Initialize()
 {
 	context.userInterface.RegisterCommand("Shoot", std::bind(&Fight::ShootCommandHandler, this, std::placeholders::_1));
-	context.userInterface.RegisterCommand("Surrender", std::bind(&Fight::ShootCommandHandler, this, std::placeholders::_1));
-	context.userInterface.RegisterCommand("Flee", std::bind(&Fight::ShootCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand("Surrender", std::bind(&Fight::SurrenderCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand("Flee", std::bind(&Fight::FleeCommandHandler, this, std::placeholders::_1));
 }
 
 void Fight::Terminate()
