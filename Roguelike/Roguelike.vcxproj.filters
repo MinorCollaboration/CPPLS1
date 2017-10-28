@@ -170,6 +170,9 @@
     <ClInclude Include="src\ui\cnsl\state\fight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\wind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="heroes\Bear Dalton.hero" />

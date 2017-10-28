@@ -17,6 +17,8 @@ namespace ui
 		{
 			class Port : public Base<Port>
 			{
+			private:
+				void SailCommandHandler(utils::cmd::Command& command);
 			public:
 				static const Type TYPE;
 

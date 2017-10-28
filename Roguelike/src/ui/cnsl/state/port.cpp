@@ -5,13 +5,30 @@ using namespace ui::cnsl::state;
 
 const Type Port::TYPE(Type::PORT);
 
+void Port::SailCommandHandler(utils::cmd::Command& command)
+{
+	char destinationName;
+	destinationName = command.GetParameter<char>(0);
+
+	for (auto port : context.game.ports) {
+		if (strcmp(port->name, &destinationName) == 0)
+		{
+			context.game.LeavePort(*port);
+			context.userInterface.SetState(Type::SAIL);
+		}
+	}
+
+	context.userInterface.DrawConsole("Port does not exist");
+	return;
+}
+
 void Port::Initialize()
 {
-	context.userInterface.RegisterCommand<>("Shop", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SHOP); });
-	context.userInterface.RegisterCommand<>("Smith", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SMITH); });
-	context.userInterface.RegisterCommand<>("Harbor", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::HARBOR); });
-	context.userInterface.RegisterCommand<>("Sail", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SAIL); });
-	context.userInterface.RegisterCommand<>("Repair", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::REPAIR); });
+	context.userInterface.RegisterCommand("Shop", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SHOP); });
+	context.userInterface.RegisterCommand("Smith", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SMITH); });
+	context.userInterface.RegisterCommand("Harbor", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::HARBOR); });
+	context.userInterface.RegisterCommand<char>("Sail", std::bind(&Port::SailCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand("Repair", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::REPAIR); });
 }
 
 void Port::Terminate()

@@ -8,6 +8,7 @@
 
 #include "errorcategory.h"
 #include "port.h"
+#include "wind.h"
 
 namespace game
 {
@@ -21,6 +22,8 @@ namespace game
 		const double	PIRATE_SPAWN_CHANCE = 35;
 
 		int				remaingSailTurns;
+		Port*			portDestination;
+		Ship*			pirateShip;
 		
 		//PortsContainer	ports; // Currently 24 ports available
 
@@ -53,7 +56,10 @@ namespace game
 
 		void LeavePort(Port destination);
 		void EnterPort();
-		void SetSail();
+		void SetSail(game::Wind);
+
+		void ShootPirate();
+		void ShootPlayer();
 
 		void Clear();
 

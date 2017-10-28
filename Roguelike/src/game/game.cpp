@@ -13,8 +13,8 @@ Game::Game() :
 	ships = game::GetAvailableShips();
 	cannons = game::GetAvailableCannons();
 
-	int distanceSame = game::GetPortDistance(*ports[0], *ports[0]);
-	int distanceDiff = game::GetPortDistance(*ports[0], *ports[2]);
+	//int distanceSame = game::GetPortDistance(*ports[0], *ports[0]);
+	//int distanceDiff = game::GetPortDistance(*ports[0], *ports[2]);
 }
 
 /** Copy assignment operator */
@@ -131,6 +131,92 @@ void Game::Repair()
 	}
 	else
 		throw std::system_error(Error::NOT_ENOUGH_GOLD);
+}
+
+void Game::LeavePort(Port destination)
+{
+	remaingSailTurns = game::GetPortDistance(currentPort, destination);
+	portDestination  = &destination;
+}
+
+void Game::EnterPort()
+{
+	currentPort = *portDestination;
+	portDestination = nullptr;
+}
+
+void Game::SetSail(game::Wind wind)
+{
+	int stormOutput = utils::random(100); // StormOutputChance
+
+	switch (wind) {
+	
+	case game::Wind::breeze :
+		if (currentShip.weight == game::shipWeight::licht) {
+			remaingSailTurns--;
+		} // else: no wind, do nothing
+		break;
+	case game::Wind::weak :
+		if (currentShip.weight != game::shipWeight::log) {
+			remaingSailTurns--;
+		}
+		break;
+	case game::Wind::normal :
+		remaingSailTurns--;
+		break;
+	case game::Wind::strong :
+		remaingSailTurns--;
+		remaingSailTurns--;
+		break;
+	case game::Wind::storm :
+		currentShip.lifePoints -= utils::random(currentShip.lifePoints);
+
+		if (stormOutput < 40)
+			remaingSailTurns++; // you got offcourse, you need a extra turn
+		else if (stormOutput < 80) // take a remaining of 40 procent
+			break;
+		else // take the remaining 20 procent
+			remaingSailTurns--; // you got blown at the right direction, one turn less;
+		
+		break;
+	case game::Wind::none :
+	default:
+		break; // No wind, so no movement
+	}
+
+	if (remaingSailTurns > 0)
+	{
+		if (utils::random(100) <= PIRATE_SPAWN_CHANCE) // Output is smaller than (or equal to) PIRATE_SPANW_CHANCE
+		{
+			pirateShip = ships[utils::random(ships.size() - 1)];
+		}
+	}
+	else // else: the port defences destroyed the pirate, we can safely enter the port
+	{
+		EnterPort();
+	}
+}
+
+void Game::ShootPlayer()
+{
+	for (auto cannon : pirateShip->cannons)
+	{
+		currentShip.lifePoints -= cannon->Shoot();
+		if (currentShip.lifePoints <= 0)
+			break;
+	}
+}
+
+void Game::ShootPirate()
+{
+	for (auto cannon : currentShip.cannons)
+	{
+		pirateShip->lifePoints -= cannon->Shoot();
+		if (pirateShip->lifePoints <= 0) {
+			pirateShip = nullptr;
+			break;
+		}
+	}
 }
 
 void Game::OnMove()
