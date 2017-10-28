@@ -18,7 +18,9 @@ namespace ui
 			class Sail : public Base<Sail>
 			{
 			private:
+				game::Wind GetRandomWind();
 				void NextCommandHandler(utils::cmd::Command& command);
+				game::Wind wind;
 			public:
 				static const Type TYPE;
 

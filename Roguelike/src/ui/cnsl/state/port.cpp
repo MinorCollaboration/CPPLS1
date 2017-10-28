@@ -7,15 +7,31 @@ const Type Port::TYPE(Type::PORT);
 
 void Port::SailCommandHandler(utils::cmd::Command& command)
 {
-	char destinationName;
-	destinationName = command.GetParameter<char>(0);
+	std::string destinationName = command.GetParameter<std::string>(0);
 
 	for (auto port : context.game.ports) {
-		if (strcmp(port->name, &destinationName) == 0)
-		{
-			context.game.LeavePort(*port);
-			context.userInterface.SetState(Type::SAIL);
+		char* portName = _strdup(port->name);
+		char* start = *&portName;
+		while (*portName) {
+			*portName = tolower(*portName);
+			portName++;
 		}
+
+		if (destinationName.compare(start) == 0)
+		{
+			if (game::GetPortDistance(*port, context.game.currentPort) == 0) {
+				context.userInterface.DrawConsole("This port cannot be sailed to as it is the same or cannot be found");
+				delete[] start;
+			}
+			else {
+				context.game.LeavePort(*port);
+				context.userInterface.SetState(Type::SAIL);
+				delete[] start;
+			}
+			return;
+		}
+		
+		delete[] start;
 	}
 
 	context.userInterface.DrawConsole("Port does not exist");
@@ -27,7 +43,7 @@ void Port::Initialize()
 	context.userInterface.RegisterCommand("Shop", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SHOP); });
 	context.userInterface.RegisterCommand("Smith", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::SMITH); });
 	context.userInterface.RegisterCommand("Harbor", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::HARBOR); });
-	context.userInterface.RegisterCommand<char>("Sail", std::bind(&Port::SailCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<std::string>("Sail", std::bind(&Port::SailCommandHandler, this, std::placeholders::_1));
 	context.userInterface.RegisterCommand("Repair", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::REPAIR); });
 }
 

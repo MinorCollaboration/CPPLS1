@@ -121,10 +121,11 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 					break;
 				}
 
+				delete[] name;
 				name = new char[100];
 			}
 			
-			delete name;
+			delete[] name;
 			passFirstRow = true; // First do the stream check before breaking out
 		}
 		else {
@@ -139,8 +140,8 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 					if (columnsPassed == column) {
 						int returnValue = atoi(distance);
 
-						delete name;
-						delete distance;
+						delete[] name;
+						delete[] distance;
 						delete[] portLine;
 
 						return returnValue;
@@ -150,10 +151,10 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 					}
 				}
 
-				delete distance;
+				delete[] distance;
 			}
 
-			delete name;
+			delete[] name;
 		}
 
 		if (!stream)

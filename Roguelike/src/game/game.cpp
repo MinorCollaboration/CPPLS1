@@ -133,16 +133,16 @@ void Game::Repair()
 		throw std::system_error(Error::NOT_ENOUGH_GOLD);
 }
 
-void Game::LeavePort(Port destination)
+void Game::LeavePort(Port& destination)
 {
 	remaingSailTurns = game::GetPortDistance(currentPort, destination);
-	portDestination  = &destination;
+	destinationPort = &destination;
 }
 
 void Game::EnterPort()
 {
-	currentPort = *portDestination;
-	portDestination = nullptr;
+	currentPort = *destinationPort;
+	destinationPort = nullptr;
 }
 
 void Game::SetSail(game::Wind wind)
@@ -153,30 +153,30 @@ void Game::SetSail(game::Wind wind)
 	
 	case game::Wind::breeze :
 		if (currentShip.weight == game::shipWeight::licht) {
-			remaingSailTurns--;
+			remaingSailTurns -= 1;
 		} // else: no wind, do nothing
 		break;
 	case game::Wind::weak :
 		if (currentShip.weight != game::shipWeight::log) {
-			remaingSailTurns--;
+			remaingSailTurns -= 1;
 		}
 		break;
 	case game::Wind::normal :
-		remaingSailTurns--;
+		remaingSailTurns -= 1;
 		break;
 	case game::Wind::strong :
-		remaingSailTurns--;
-		remaingSailTurns--;
+		remaingSailTurns -= 1;
+		remaingSailTurns -= 1;
 		break;
 	case game::Wind::storm :
 		currentShip.lifePoints -= utils::random(currentShip.lifePoints);
 
 		if (stormOutput < 40)
-			remaingSailTurns++; // you got offcourse, you need a extra turn
+			remaingSailTurns += 1; // you got offcourse, you need a extra turn
 		else if (stormOutput < 80) // take a remaining of 40 procent
 			break;
 		else // take the remaining 20 procent
-			remaingSailTurns--; // you got blown at the right direction, one turn less;
+			remaingSailTurns -= 1; // you got blown at the right direction, one turn less;
 		
 		break;
 	case game::Wind::none :
@@ -217,6 +217,11 @@ void Game::ShootPirate()
 			break;
 		}
 	}
+}
+
+void Game::Surrender()
+{
+	pirateShip = nullptr;
 }
 
 void Game::OnMove()

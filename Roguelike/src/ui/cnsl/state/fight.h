@@ -19,6 +19,8 @@ namespace ui
 			{
 			private:
 				void ShootCommandHandler(utils::cmd::Command& command);
+				void SurrenderCommandHandler(utils::cmd::Command& command);
+				void FleeCommandHandler(utils::cmd::Command& command);
 			public:
 				static const Type TYPE;
 

@@ -20,10 +20,6 @@ namespace game
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
-
-		int				remaingSailTurns;
-		Port*			portDestination;
-		Ship*			pirateShip;
 		
 		//PortsContainer	ports; // Currently 24 ports available
 
@@ -45,6 +41,10 @@ namespace game
 		Port			currentPort;
 		Ship			currentShip;
 
+		Ship*			pirateShip;
+		Port*			destinationPort;
+		int				remaingSailTurns;
+
 		bool IsRunning() const;
 		bool IsCleared() const;
 
@@ -54,12 +54,14 @@ namespace game
 
 		void Repair();
 
-		void LeavePort(Port destination);
+		void LeavePort(Port& destination);
 		void EnterPort();
 		void SetSail(game::Wind);
 
 		void ShootPirate();
 		void ShootPlayer();
+
+		void Surrender();
 
 		void Clear();
 
