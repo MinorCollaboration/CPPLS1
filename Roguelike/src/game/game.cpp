@@ -346,9 +346,18 @@ bool Game::BuyItem(Item& toBuy)
 	return false;
 }
 
-bool Game::SellItem(Item item)
+bool Game::SellItem(Item toSell)
 {
-	return currentShip.RemoveItem(item);
+	for (auto item : currentPort.buyableItems)
+	{
+		if (std::strcmp(item->name, toSell.name) == 0)
+		{
+			AddGold(item->price);
+			return currentShip.RemoveItem(toSell);
+		}
+	}
+
+	return false;
 }
 
 void Game::ExchangeShip(Ship newship)

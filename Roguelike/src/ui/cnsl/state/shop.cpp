@@ -19,20 +19,38 @@ void Shop::BuyCommandHandler(utils::cmd::Command& command)
 			return;
 		}
 	}
+
+	context.userInterface.DrawConsole("Could not find the item");
 }
 
 void Shop::SellCommandHandler(utils::cmd::Command& command)
 {
+	std::string itemName = command.GetParameter<std::string>(0);
+
+	for (auto item : context.game.currentShip.items)
+	{
+		if (itemName.compare(item->name) == 0) {
+			if (context.game.SellItem(*item))
+				context.userInterface.DrawConsole("You succesfully bought the requested item");
+			else
+				context.userInterface.DrawConsole("Failed to buy the requested item, check your cash and load size");
+			return;
+		}
+	}
+
+	context.userInterface.DrawConsole("Could not find the item");
 }
 
 void Shop::Initialize()
 {
 	context.userInterface.RegisterCommand<std::string>("Buy", std::bind(&Shop::BuyCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<std::string>("Sell", std::bind(&Shop::SellCommandHandler, this, std::placeholders::_1));
 }
 
 void Shop::Terminate()
 {
 	context.userInterface.UnregisterCommand("Buy");
+	context.userInterface.UnregisterCommand("Sell");
 }
 
 void Shop::DrawConsole() const

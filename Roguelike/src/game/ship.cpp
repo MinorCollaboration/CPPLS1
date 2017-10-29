@@ -61,23 +61,14 @@ bool Ship::AddItem(Item& toAdd)
 
 bool Ship::RemoveItem(Item toRemove)
 {
-	bool removed = false;
-	int i = 0;
 	for (auto item : items) {
-		if (std::strcmp(item->name, toRemove.name) == 0 && !removed) {
-			removed = true;
-			items[i] = nullptr;
+		if (std::strcmp(item->name, toRemove.name) == 0 && item->amount > 0) {
+			item->amount -= 1;
+			return true;
 		}
-		else {
-			item[i - 1] = item[i];
-		}
-		i++;
 	}
-	
-	if (removed)
-		items.pop_back();
 
-	return removed;
+	return false;
 }
 
 ShipsContainer game::ParseShip(std::istream& stream)
