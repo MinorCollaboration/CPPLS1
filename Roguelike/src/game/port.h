@@ -30,8 +30,8 @@ namespace game
 		void LeavePort();
 	};
 
-	PortsContainer ParsePort(std::istream& stream);
-	PortsContainer ParsePort(std::istream& stream, std::error_code& errorBuffer);
+	PortsContainer ParsePorts(std::istream& stream);
+	PortsContainer ParsePorts(std::istream& stream, std::error_code& errorBuffer);
 
 	PortsContainer GetAvailablePorts();
 

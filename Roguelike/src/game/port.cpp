@@ -20,7 +20,7 @@ void Port::LeavePort()
 	availableShips.clear();
 }
 
-PortsContainer game::ParsePort(std::istream& stream)
+PortsContainer game::ParsePorts(std::istream& stream)
 {
 	if (!stream)
 		throw std::system_error(Error::STREAM_ERROR);
@@ -53,7 +53,7 @@ PortsContainer game::ParsePort(std::istream& stream)
 
 				name = new char[100];
 			}
-			delete name;
+			delete[] name;
 			passFirstRow = true; // First do the stream check before breaking out
 		} else {
 			break;
@@ -68,11 +68,11 @@ PortsContainer game::ParsePort(std::istream& stream)
 	return ports;
 }
 
-PortsContainer game::ParsePort(std::istream& stream, std::error_code& errorBuffer)
+PortsContainer game::ParsePorts(std::istream& stream, std::error_code& errorBuffer)
 {
 	try
 	{
-		return ParsePort(stream);
+		return ParsePorts(stream);
 	}
 	catch (std::system_error exception)
 	{
@@ -85,7 +85,7 @@ PortsContainer game::GetAvailablePorts()
 {
 	std::ifstream stream("./ports.csv");
 	std::error_code errorBuffer;
-	return ParsePort(stream, errorBuffer);
+	return ParsePorts(stream, errorBuffer);
 }
 
 int game::ParsePortDis(std::istream& stream, Port origin, Port destination)

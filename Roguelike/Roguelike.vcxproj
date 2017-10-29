@@ -161,6 +161,7 @@
     <ClCompile Include="description.cpp" />
     <ClCompile Include="src\game\cannon.cpp" />
     <ClCompile Include="src\game\errorcategory.cpp" />
+    <ClCompile Include="src\game\item.cpp" />
     <ClCompile Include="src\game\port.cpp" />
     <ClCompile Include="src\game\ship.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
