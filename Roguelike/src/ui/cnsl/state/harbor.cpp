@@ -34,18 +34,16 @@ void Harbor::DrawConsole() const
 
 	std::cout << "these are available for sale" << std::endl;
 	std::cout << "Type:			" << "Price:	" << "Cannons:	" << "LoadSize:	" << "Lifepoints:	" << "Size:		" << "Weight:	"<< std::endl;
-	for (auto ship : context.game.ships)
+	for (auto ship : context.game.currentPort.buyableShips)
 	{
-		if (utils::random(1) == 1) {
-			int strlen = std::strlen(ship->type);
+		int strlen = std::strlen(ship->type);
 
-			std::cout << ship->type << ",	" << (strlen < 15 ? "	" : "") << (strlen < 7 ? "	" : "")
-				<< ship->price << ",	" << ship->cannonSize << ",		"
-				<< ship->loadSize << ",		" << ship->maxLifePoints << "		"
-				<< (ship->size == game::shipSize::klein ? "Small		" : "Normal		")
-				<< (ship->weight == game::shipWeight::log ? "Log" : (ship->weight == game::shipWeight::licht ? "Licht" : "Normal"))
-				<< std::endl;
-		}
+		std::cout << ship->type << ",	" << (strlen < 15 ? "	" : "") << (strlen < 7 ? "	" : "")
+			<< ship->price << ",	" << ship->cannonSize << ",		"
+			<< ship->loadSize << ",		" << ship->maxLifePoints << "		"
+			<< (ship->size == game::shipSize::klein ? "Small		" : "Normal		")
+			<< (ship->weight == game::shipWeight::log ? "Log" : (ship->weight == game::shipWeight::licht ? "Licht" : "Normal"))
+			<< std::endl;
 	}
 
 	std::cout << "Which one will it be?";

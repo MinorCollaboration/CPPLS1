@@ -11,13 +11,13 @@ void Port::EnterPort(ShipsContainer shipContainer)
 {
 	for (auto ship : shipContainer)
 	{
-		availableShips.addItem(ship);
+		buyableShips.addItem(ship);
 	}
 }
 
 void Port::LeavePort()
 {
-	availableShips.clear();
+	buyableShips.clear();
 }
 
 PortsContainer game::ParsePorts(std::istream& stream)

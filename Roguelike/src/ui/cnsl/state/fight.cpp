@@ -73,8 +73,11 @@ void Fight::Terminate()
 
 void Fight::DrawConsole() const
 {
-	std::cout << "You're fighting a pirate, what do you want to do?";
-	std::cout << "you have " << context.game.currentShip.lifePoints << " lifepoints remaining" << std::endl << std::endl;
+	std::cout << "You're fighting a pirate, what do you want to do?" << std::endl;
+	std::cout << "You have " << context.game.currentShip.lifePoints << " lifepoints remaining" << std::endl << std::endl;
+
+	std::cout << "You're carrying " << context.game.currentShip.items.size() << " items" << std::endl;
+	std::cout << "And you can spend " << context.game.Gold() << " when you arrive at the next port, those pirates will never find it." << std::endl << std::endl;
 }
 
 void Fight::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const

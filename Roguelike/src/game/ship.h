@@ -11,12 +11,15 @@
 #include "errorcategory.h"
 
 #include "cannon.h"
+//#include "item.h"
 
 namespace game
 {
 	class Ship;
+	class Item;
 
 	typedef utils::Array<Ship*> ShipsContainer;
+	typedef utils::Array<Item*> ItemsContainer;
 
 	enum class shipSize
 	{
@@ -44,6 +47,7 @@ namespace game
 		int		maxLifePoints;
 
 		CannonContainer cannons;
+		ItemsContainer	items;
 
 		bool	AddCannon(Cannon*);
 		bool	RemoveCannon(cannonWeight);

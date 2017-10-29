@@ -81,6 +81,12 @@ void Game::Start()
 
 	AddGold(1000); // Starting cash
 
+	for (auto ship : ships) {
+		if (utils::random(100) <= 50) { // 50 chance to be buyable
+			currentPort.buyableShips.addItem(ship);
+		}
+	}
+
 	isRunning = true;
 	isCleared = false;
 }
@@ -147,12 +153,23 @@ void Game::LeavePort(Port& destination)
 {
 	remaingSailTurns = game::GetPortDistance(currentPort, destination);
 	destinationPort = &destination;
+
+	for (auto ship : currentPort.buyableShips)
+	{
+		currentPort.buyableShips.pop_back();
+	}
 }
 
 void Game::EnterPort()
 {
 	currentPort = *destinationPort;
 	destinationPort = nullptr;
+
+	for (auto ship : ships) {
+		if (utils::random(100) <= 50) { // 50 chance to be buyable
+			currentPort.buyableShips.addItem(ship);
+		}
+	}
 }
 
 void Game::SetSail(game::Wind wind)

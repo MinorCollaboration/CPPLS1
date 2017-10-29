@@ -76,6 +76,9 @@ void Sail::DrawConsole() const
 	std::cout << "You're at the middle of the sea, on your way to " << context.game.destinationPort->name << std::endl;
 	std::cout << "You're " << context.game.remaingSailTurns << " miles away from it" << std::endl << std::endl;
 
+	std::cout << "You're carrying " << context.game.currentShip.items.size() << " items" << std::endl;
+	std::cout << "And you can spend " << context.game.Gold() << " when you arrive at the next port" << std::endl << std::endl;
+
 	std::cout << "The wind is ";
 	switch (wind) {
 		case game::Wind::breeze: std::cout << "a small breeze"; break;
