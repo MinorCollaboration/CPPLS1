@@ -46,7 +46,7 @@ namespace game
 		CannonContainer cannons;
 
 		bool	AddCannon(Cannon*);
-		void	RemoveCannon(cannonWeight);
+		bool	RemoveCannon(cannonWeight);
 
 		// Exceptionals
 		shipSize		size	= shipSize::normaal; // klein/(:groot)

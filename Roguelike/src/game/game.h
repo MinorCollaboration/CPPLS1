@@ -63,6 +63,11 @@ namespace game
 
 		void Surrender();
 
+		bool BuyCannon(cannonWeight);
+		bool BuyCannon(cannonWeight, int amount);
+		bool SellCannon(cannonWeight);
+		bool SellCannon(cannonWeight, int amount);
+
 		void Clear();
 
 		void OnChange();

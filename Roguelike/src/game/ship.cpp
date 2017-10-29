@@ -21,6 +21,21 @@ bool Ship::AddCannon(Cannon* cannon)
 	return false;
 }
 
+bool Ship::RemoveCannon(cannonWeight cw)
+{
+	int i = 0;
+	for (auto cannon : cannons)
+	{
+		if (cannon->weight == cw) {
+			delete cannons[i];
+			cannons[i] = nullptr;
+			return true;
+		}
+		i++;
+	}
+	return false;
+}
+
 ShipsContainer game::ParseShip(std::istream& stream)
 {
 	if (!stream)

@@ -2,8 +2,10 @@
 #define UTILS_INT_HEADER_INCLUDED
 
 #include <iostream>
+#include <algorithm>
 #include <random>
 #include <ctime>
+#include <cctype>
 
 namespace utils
 {
@@ -24,6 +26,17 @@ namespace utils
 		return random(0, max);
 	}
 
+	/*static bool isnumeric(std::basic_string<char,struct std::char_traits<char>,std::allocator<char>>& s)
+	{
+		return !s.empty() && std::find_if(s.begin(),
+			s.end(), [](char c) { return !std::isdigit(c); }) == s.end();
+	}*/
+
+	static bool isnumeric(const std::string& s)
+	{
+		return !s.empty() && std::find_if(s.begin(),
+			s.end(), [](char c) { return !std::isdigit(c); }) == s.end();
+	}
 	
 }
 

@@ -1,6 +1,8 @@
 #ifndef UI_CNSL_STATE_SMITH_HEADER_INCLUDED
 #define UI_CNSL_STATE_SMITH_HEADER_INCLUDED
 
+#include <utils/int.hpp>
+
 #include <iostream>
 
 #include "../commanddescription.h"

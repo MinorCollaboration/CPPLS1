@@ -224,6 +224,58 @@ void Game::Surrender()
 	pirateShip = nullptr;
 }
 
+bool Game::BuyCannon(cannonWeight cw)
+{
+	return BuyCannon(cw, 1);
+}
+
+bool Game::BuyCannon(cannonWeight cw, int amount)
+{
+	bool addedSome = false;
+	Cannon* toAdd = nullptr;
+	for (auto cannon : cannons)
+	{
+		if (cannon->weight == cw) {
+			toAdd = cannon;
+		}
+	}
+
+	if (!(currentShip.size == shipSize::klein && cw == cannonWeight::HEAVY)) {
+		for (int i = 0; i < amount; i++) {
+			if (currentShip.AddCannon(toAdd)) {
+				UseGold(toAdd->price);
+				addedSome = true;
+			}
+		}
+	}
+	
+	return addedSome;
+}
+
+bool Game::SellCannon(cannonWeight cw)
+{
+	return SellCannon(cw, 1);
+}
+
+bool Game::SellCannon(cannonWeight cw, int amount)
+{
+	bool removedSome = false;
+	Cannon toRemove;
+	for (auto cannon : cannons) {
+		if (cannon->weight == cw)
+			toRemove = *cannon;
+	}
+
+	for (int i = 0; i < amount; i++) {
+		if (currentShip.RemoveCannon(cw)) {
+			AddGold(toRemove.price / 2);
+			removedSome = true;
+		}
+	}
+
+	return removedSome;
+}
+
 void Game::OnMove()
 {
 	OnChange(); // It's outside the if so will always be called after a movement
