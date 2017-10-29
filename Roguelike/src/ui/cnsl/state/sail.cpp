@@ -46,6 +46,10 @@ void Sail::NextCommandHandler(utils::cmd::Command& command)
 
 void Sail::Initialize()
 {
+	if (context.game.destinationPort == nullptr) {
+		context.userInterface.SetState(Type::PORT);
+	}
+
 	wind = GetRandomWind();
 	context.game.SetSail(wind);
 
