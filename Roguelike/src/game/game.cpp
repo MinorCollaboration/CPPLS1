@@ -12,6 +12,7 @@ Game::Game() :
 	ports = game::GetAvailablePorts();
 	ships = game::GetAvailableShips();
 	cannons = game::GetAvailableCannons();
+	items = game::GetAvailableItems();
 
 	//int distanceSame = game::GetPortDistance(*ports[0], *ports[0]);
 	//int distanceDiff = game::GetPortDistance(*ports[0], *ports[2]);
@@ -33,9 +34,13 @@ Game::~Game() noexcept
 	for (auto ship : ships)
 		delete ship->type;
 
+	for (auto item : items)
+		delete item->name;
+
 	ports.clear();
 	ships.clear();
 	cannons.clear();
+	items.clear();
 	Clear();
 }
 
@@ -67,6 +72,11 @@ void Game::Start()
 	for (int i = 0; i < utils::random(currentShip.cannonSize - 1); i++)
 	{
 		currentShip.AddCannon(cannons[utils::random(cannons.size() - 1)]);
+	}
+
+	for (auto item : items)
+	{
+		game::GetItemMinAmount(*item, currentPort);
 	}
 
 	AddGold(1000); // Starting cash

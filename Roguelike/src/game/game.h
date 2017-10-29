@@ -7,7 +7,8 @@
 #include <utils/int.hpp>
 
 #include "errorcategory.h"
-#include "port.h"
+#include "port.h" // also includes ship.h which also includes cannon.h
+#include "item.h"
 #include "wind.h"
 
 namespace game
@@ -20,8 +21,6 @@ namespace game
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
-		
-		//PortsContainer	ports; // Currently 24 ports available
 
 		void OnMove();
 	public:
@@ -37,6 +36,7 @@ namespace game
 		PortsContainer	ports;
 		ShipsContainer	ships;
 		CannonContainer cannons;
+		ItemsContainer	items;
 
 		Port			currentPort;
 		Ship			currentShip;

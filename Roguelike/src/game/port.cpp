@@ -93,7 +93,6 @@ int game::ParsePortDis(std::istream& stream, Port origin, Port destination)
 	if (!stream)
 		throw std::system_error(Error::STREAM_ERROR);
 
-
 	char* portLine = new char[1000];
 	int column = 0;
 	bool passFirstRow = false;

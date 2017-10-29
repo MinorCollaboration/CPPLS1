@@ -76,22 +76,103 @@ ItemsContainer game::GetAvailableItems()
 	return ParseItems(stream, errorBuffer);
 }
 
-int	game::GetItemMinAmount(std::istream& stream, Item, Port)
+int	game::GetItemMinAmount(std::istream& stream, Item item, Port port)
+{
+	if (!stream)
+		throw std::system_error(Error::STREAM_ERROR);
+
+	char* itemLine = new char[1000];
+	int column = 0;
+	bool passFirstRow = false;
+
+	do
+	{
+		if (!stream || !stream.getline(itemLine, 1000)) {
+			delete[] itemLine;
+			throw std::system_error(Error::STREAM_ERROR);
+		}
+
+		if (stream.gcount() == 0 || itemLine[0] == '\0' || itemLine[0] == '\ ' || itemLine == nullptr || itemLine[0] == '#')
+			continue;
+
+		if (!passFirstRow) {
+			std::stringstream ss(itemLine);
+			char* name = new char[100];
+			while (ss.getline(name, 100, ';')) {
+				if (name[0] == '\0') continue;
+
+				if (std::strcmp(name, item.name) != 0)
+					column++;
+				else {
+					passFirstRow;
+					break;
+				}
+
+				delete[] name;
+				name = new char[100];
+			}
+
+			delete[] name;
+			passFirstRow = true; // First do the stream check before breaking out
+		}
+		else {
+			std::stringstream ss(itemLine);
+			char* name = new char[100];
+
+			ss.getline(name, 100, ';');
+			if (std::strcmp(name, port.name) == 0) {
+				int columnsPassed = 0;
+				char* minmax = new char[15];
+				while (ss.getline(minmax, 15, ';')) {
+					if (columnsPassed == column) {
+						std::stringstream mmss(minmax);
+
+						char* min = new char[4];
+						char* max = new char[4];
+						mmss.getline(min, 4, '-');
+						mmss.getline(max, 4, '-');
+
+						int returnValue = atoi(min);
+
+						delete[] name;
+						delete[] minmax;
+						delete[] itemLine;
+						delete[] max;
+						delete[] min;
+
+						return returnValue;
+					}
+					else {
+						columnsPassed++;
+					}
+				}
+
+				delete[] minmax;
+			}
+
+			delete[] name;
+		}
+
+		if (!stream)
+			throw std::system_error(Error::STREAM_ERROR);
+	} while (!stream.eof());
+
+	delete[] itemLine;
+
+	return -1;
+}
+
+int	game::GetItemMaxAmount(std::istream& stream, Item item, Port port)
 {
 	return -1;
 }
 
-int	game::GetItemMaxAmount(std::istream& stream, Item, Port)
+int	game::GetItemMinPrice(std::istream& stream, Item item, Port port)
 {
 	return -1;
 }
 
-int	game::GetItemMinPrice(std::istream& stream, Item, Port)
-{
-	return -1;
-}
-
-int	game::GetItemMaxPrice(std::istream& stream, Item, Port)
+int	game::GetItemMaxPrice(std::istream& stream, Item item, Port port)
 {
 	return -1;
 }
