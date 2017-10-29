@@ -29,7 +29,6 @@ namespace game
 	public:
 		ShipsContainer buyableShips;
 		ItemsContainer buyableItems;
-		ItemsContainer sellableItems;
 
 		char* name;
 

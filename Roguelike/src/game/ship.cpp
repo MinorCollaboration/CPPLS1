@@ -36,6 +36,13 @@ bool Ship::RemoveCannon(cannonWeight cw)
 	return false;
 }
 
+bool Ship::AddItem(Item toAdd)
+{
+	
+
+	return false;
+}
+
 ShipsContainer game::ParseShip(std::istream& stream)
 {
 	if (!stream)

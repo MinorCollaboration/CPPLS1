@@ -16,6 +16,7 @@
 namespace game
 {
 	class Item;
+	class Port;
 
 	typedef utils::Array<Item*> ItemsContainer;
 
@@ -24,6 +25,8 @@ namespace game
 	private:
 	public:
 		char*		name;
+		int			amount;
+		int			price;
 	};
 	
 	ItemsContainer	ParseItems(std::istream& stream);

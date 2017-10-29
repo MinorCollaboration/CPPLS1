@@ -23,7 +23,19 @@ void Shop::Terminate()
 
 void Shop::DrawConsole() const
 {
-	std::cout << "You're at the shop, what do you want to do?";
+	std::cout << "You're at the shop, what do you want to do?" << std::endl << std::endl;
+
+	std::cout << "name,		price,	amount" << std::endl;
+	for (auto item : context.game.currentPort.buyableItems)
+	{
+		int strlen = std::strlen(item->name);
+
+		std::cout	<< item->name << ",	" << (strlen < 8 ? "	": "")
+					<< item->price << ",	"
+					<< item->amount << ",	" << std::endl;
+	}
+
+	std::cout << "so which item will it be?";
 }
 
 void Shop::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const

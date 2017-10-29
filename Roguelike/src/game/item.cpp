@@ -127,10 +127,10 @@ int	game::GetItemMinAmount(std::istream& stream, Item item, Port port)
 					if (columnsPassed == column) {
 						std::stringstream mmss(minmax);
 
-						char* min = new char[4];
-						char* max = new char[4];
-						mmss.getline(min, 4, '-');
-						mmss.getline(max, 4, '-');
+						char* min = new char[5];
+						char* max = new char[5];
+						mmss.getline(min, 5, '-');
+						mmss.getline(max, 5, '-');
 
 						int returnValue = atoi(min);
 
@@ -213,10 +213,10 @@ int	game::GetItemMaxAmount(std::istream& stream, Item item, Port port)
 					if (columnsPassed == column) {
 						std::stringstream mmss(minmax);
 
-						char* min = new char[4];
-						char* max = new char[4];
-						mmss.getline(min, 4, '-');
-						mmss.getline(max, 4, '-');
+						char* min = new char[5];
+						char* max = new char[5];
+						mmss.getline(min, 5, '-');
+						mmss.getline(max, 5, '-');
 
 						int returnValue = atoi(max);
 
@@ -299,10 +299,10 @@ int	game::GetItemMinPrice(std::istream& stream, Item item, Port port)
 					if (columnsPassed == column) {
 						std::stringstream mmss(minmax);
 
-						char* min = new char[4];
-						char* max = new char[4];
-						mmss.getline(min, 4, '-');
-						mmss.getline(max, 4, '-');
+						char* min = new char[5];
+						char* max = new char[5];
+						mmss.getline(min, 5, '-');
+						mmss.getline(max, 5, '-');
 
 						int returnValue = atoi(min);
 
@@ -385,10 +385,10 @@ int	game::GetItemMaxPrice(std::istream& stream, Item item, Port port)
 					if (columnsPassed == column) {
 						std::stringstream mmss(minmax);
 
-						char* min = new char[4];
-						char* max = new char[4];
-						mmss.getline(min, 4, '-');
-						mmss.getline(max, 4, '-');
+						char* min = new char[5];
+						char* max = new char[5];
+						mmss.getline(min, 5, '-');
+						mmss.getline(max, 5, '-');
 
 						int returnValue =  atoi(max);
 

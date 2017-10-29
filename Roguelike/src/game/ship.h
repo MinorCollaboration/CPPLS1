@@ -11,7 +11,7 @@
 #include "errorcategory.h"
 
 #include "cannon.h"
-//#include "item.h"
+#include "item.h"
 
 namespace game
 {
@@ -51,6 +51,9 @@ namespace game
 
 		bool	AddCannon(Cannon*);
 		bool	RemoveCannon(cannonWeight);
+
+		bool	AddItem(Item);
+		bool	RemoveItem(Item);
 
 		// Exceptionals
 		shipSize		size	= shipSize::normaal; // klein/(:groot)

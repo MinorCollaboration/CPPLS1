@@ -87,6 +87,24 @@ void Game::Start()
 		}
 	}
 
+	for (auto item : items)
+	{
+		int minAmount	= game::GetItemMinAmount(*item, currentPort);
+		int maxAmount	= game::GetItemMaxAmount(*item, currentPort);
+		int minPrice	= game::GetItemMinPrice(*item, currentPort);
+		int maxPrice	= game::GetItemMaxPrice(*item, currentPort);
+
+		if (std::strcmp(item->name, "vlees") == 0)
+		{
+			std::cout << currentPort.name << minAmount << maxAmount << minPrice << maxPrice << std::endl;
+		}
+
+		item->amount = utils::random(minAmount, maxAmount);
+		item->price = utils::random(minPrice, maxPrice);
+
+		currentPort.buyableItems.addItem(item);
+	}
+
 	isRunning = true;
 	isCleared = false;
 }
@@ -158,6 +176,11 @@ void Game::LeavePort(Port& destination)
 	{
 		currentPort.buyableShips.pop_back();
 	}
+
+	for (auto item : currentPort.buyableItems)
+	{
+		currentPort.buyableItems.pop_back();
+	}
 }
 
 void Game::EnterPort()
@@ -169,6 +192,14 @@ void Game::EnterPort()
 		if (utils::random(100) <= 50) { // 50 chance to be buyable
 			currentPort.buyableShips.addItem(ship);
 		}
+	}
+
+	for (auto item : items)
+	{
+		item->amount = utils::random(game::GetItemMinAmount(*item, currentPort), game::GetItemMaxAmount(*item, currentPort));
+		item->price = utils::random(game::GetItemMinPrice(*item, currentPort), game::GetItemMaxPrice(*item, currentPort));
+
+		currentPort.buyableItems.addItem(item);
 	}
 }
 
@@ -301,6 +332,22 @@ bool Game::SellCannon(cannonWeight cw, int amount)
 	}
 
 	return removedSome;
+}
+
+void Game::ExchangeShip(Ship newship)
+{
+	for (auto cannon : currentShip.cannons) {
+		if (newship.cannons.size() < newship.cannonSize) {
+			if (!(cannon->weight == cannonWeight::HEAVY && newship.size == shipSize::klein))
+			{
+				newship.AddCannon(cannon);
+			}
+		}
+	}
+
+	for (auto item : currentShip.items) {
+		newship.AddItem(*item);
+	}
 }
 
 void Game::OnMove()
