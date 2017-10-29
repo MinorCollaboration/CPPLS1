@@ -89,13 +89,13 @@ void Smith::GetAvailableCommands(utils::Array<CommandDescription>& commandDescri
 	CommandDescription buyCommandDescription;
 	buyCommandDescription.command = "Buy";
 	buyCommandDescription.description = "Buy a new cannon";
-	buyCommandDescription.parameters.addItem("light|middle|heavy");
+	buyCommandDescription.parameters.addItem("light|normal|heavy");
 	buyCommandDescription.parameters.addItem("amount");
 
 	CommandDescription sellCommandDescription;
 	sellCommandDescription.command = "Sell";
 	sellCommandDescription.description = "Sell a cannon";
-	sellCommandDescription.parameters.addItem("light|middle|heavy");
+	sellCommandDescription.parameters.addItem("light|normal|heavy");
 	sellCommandDescription.parameters.addItem("amount");
 
 	commandDescriptionsBuffer.addItem(buyCommandDescription);
