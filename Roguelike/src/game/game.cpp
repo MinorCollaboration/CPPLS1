@@ -29,13 +29,16 @@ Game & game::Game::operator=(const Game & other)
 Game::~Game() noexcept
 {
 	for (auto port : ports)
-		delete port->name;
+		delete[] port->name;
+	
+	for (auto item : currentShip.items)
+		delete[] item;
 
 	for (auto ship : ships)
-		delete ship->type;
+		delete[] ship->type;
 
 	for (auto item : items)
-		delete item->name;
+		delete[] item->name;
 
 	ports.clear();
 	ships.clear();
@@ -322,6 +325,30 @@ bool Game::SellCannon(cannonWeight cw, int amount)
 	}
 
 	return removedSome;
+}
+
+bool Game::BuyItem(Item& toBuy)
+{
+	if (currentShip.items.size() < currentShip.loadSize)
+	{
+		for (auto item : currentPort.buyableItems)
+		{
+			if (std::strcmp(item->name, toBuy.name) == 0) {
+				if (goldPieces >= item->price) {
+					item->amount -= 1;
+					UseGold(item->price);
+					return currentShip.AddItem(toBuy);
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+bool Game::SellItem(Item item)
+{
+	return currentShip.RemoveItem(item);
 }
 
 void Game::ExchangeShip(Ship newship)

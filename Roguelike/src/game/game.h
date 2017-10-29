@@ -68,6 +68,9 @@ namespace game
 		bool SellCannon(cannonWeight);
 		bool SellCannon(cannonWeight, int amount);
 
+		bool BuyItem(Item&);
+		bool SellItem(Item);
+
 		void ExchangeShip(Ship);
 
 		void Clear();

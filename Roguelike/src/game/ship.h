@@ -52,7 +52,7 @@ namespace game
 		bool	AddCannon(Cannon*);
 		bool	RemoveCannon(cannonWeight);
 
-		bool	AddItem(Item);
+		bool	AddItem(Item&); // Get item by copy
 		bool	RemoveItem(Item);
 
 		// Exceptionals

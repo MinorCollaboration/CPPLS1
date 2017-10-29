@@ -36,11 +36,48 @@ bool Ship::RemoveCannon(cannonWeight cw)
 	return false;
 }
 
-bool Ship::AddItem(Item toAdd)
+bool Ship::AddItem(Item& toAdd)
 {
-	
+	Item* clone = new Item(toAdd);
+	if (items.size() < loadSize) {
+		int i = 0;
+		for (auto item : items)
+		{
+			if (std::strcmp(item->name, clone->name) == 0)
+			{
+				items[i]->amount += 1;
+				delete[] clone;
+				return true;
+			}
+			i++;
+		}
+		clone->amount = 1;
+		items.addItem(clone);
+		return true;
+	}
 
 	return false;
+}
+
+bool Ship::RemoveItem(Item toRemove)
+{
+	bool removed = false;
+	int i = 0;
+	for (auto item : items) {
+		if (std::strcmp(item->name, toRemove.name) == 0 && !removed) {
+			removed = true;
+			items[i] = nullptr;
+		}
+		else {
+			item[i - 1] = item[i];
+		}
+		i++;
+	}
+	
+	if (removed)
+		items.pop_back();
+
+	return removed;
 }
 
 ShipsContainer game::ParseShip(std::istream& stream)
