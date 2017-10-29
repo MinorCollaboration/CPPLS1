@@ -89,18 +89,8 @@ void Game::Start()
 
 	for (auto item : items)
 	{
-		int minAmount	= game::GetItemMinAmount(*item, currentPort);
-		int maxAmount	= game::GetItemMaxAmount(*item, currentPort);
-		int minPrice	= game::GetItemMinPrice(*item, currentPort);
-		int maxPrice	= game::GetItemMaxPrice(*item, currentPort);
-
-		if (std::strcmp(item->name, "vlees") == 0)
-		{
-			std::cout << currentPort.name << minAmount << maxAmount << minPrice << maxPrice << std::endl;
-		}
-
-		item->amount = utils::random(minAmount, maxAmount);
-		item->price = utils::random(minPrice, maxPrice);
+		item->amount = utils::random(game::GetItemMinAmount(*item, currentPort), game::GetItemMaxAmount(*item, currentPort));
+		item->price = utils::random(game::GetItemMinPrice(*item, currentPort), game::GetItemMaxPrice(*item, currentPort));
 
 		currentPort.buyableItems.addItem(item);
 	}
