@@ -287,6 +287,9 @@ void Game::ShootPirate()
 
 void Game::Surrender()
 {
+	for (auto item : currentShip.items) {
+		currentShip.items.pop_back();
+	}
 	pirateShip = nullptr;
 }
 
@@ -322,24 +325,23 @@ bool Game::BuyCannon(cannonWeight cw, int amount)
 
 bool Game::SellCannon(cannonWeight cw)
 {
-	return SellCannon(cw, 1);
+	for (auto cannon : cannons) {
+		if (cannon->weight == cw)
+			if (currentShip.RemoveCannon(cw)) {
+				AddGold(cannon->price / 2);
+				return true;
+			}
+	}
+
+	return false;
 }
 
 bool Game::SellCannon(cannonWeight cw, int amount)
 {
 	bool removedSome = false;
-	Cannon toRemove;
-	for (auto cannon : cannons) {
-		if (cannon->weight == cw)
-			toRemove = *cannon;
-	}
 
-	for (int i = 0; i < amount; i++) {
-		if (currentShip.RemoveCannon(cw)) {
-			AddGold(toRemove.price / 2);
-			removedSome = true;
-		}
-	}
+	for (int i = 0; i < amount; i++)
+		if (SellCannon(cw)) removedSome = true;
 
 	return removedSome;
 }
