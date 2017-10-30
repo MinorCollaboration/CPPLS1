@@ -7,30 +7,28 @@
 
 namespace utils
 {
-	struct CharString {
+	class CharString {
+	public:
 		char* str;
 		CharString() : str() {}  // Initialize NULL
 		CharString(char* text) : str(text){}
-		~CharString() { delete[] str; }
+		//~CharString() { delete[] str; }
 		// Conversions to be usable with C functions
 		operator char**() { return &str; }
 		operator char*() { return str; }
-		CharString operator>>(std::istream& is) {
-			is >> str;
-			return *this;
-		};
+		friend std::istream& operator>>(std::istream &is, CharString &cs);
 	};
 
 	std::istream& operator>> (std::istream& in, CharString& cs) {
 		// read all the data you need to construct an object.
 		//
+		char* text = new char[100];
+		in.getline(text, 100, ' ');
 		// Then:
 		if (in) { // Read succeeded! Update object.
-				  // Build a new object of the appropriate type.
-			char* text = new char[100];
-			in.getline(text, 100, ' ');
-			char* cpy = _strdup(text);
-			CharString dup(cpy);
+			// Build a new object of the appropriate type.
+			
+			CharString dup(text);
 
 			// Swap the object you were given as input for the one you
 			// just read. This way, if the read completely succeeds, you
