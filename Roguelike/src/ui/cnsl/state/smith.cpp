@@ -107,7 +107,7 @@ void Smith::Terminate()
 void Smith::DrawConsole() const
 {
 	std::cout << "You're at the smith, here you can buy or sell your cannons" << std::endl << std::endl;
-	std::cout << "You have " << context.game.Gold() << " gold coins. What do you want to do?";
+	std::cout << "You have " << context.game.Gold() << " gold coins." << std::endl <<" What do you want to do?";
 
 	int lightCannon = 0, normalCannon = 0, heavyCannon = 0;
 	for (auto cannon : context.game.currentShip.cannons) {

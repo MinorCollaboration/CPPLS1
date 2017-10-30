@@ -13,7 +13,6 @@ void Gameover::SaveCommandHandler(utils::cmd::Command& command)
 void Gameover::Initialize()
 {
 	context.userInterface.GameOver();
-	//context.userInterface.RegisterCommand("Save", std::bind(&Gameover::SaveCommandHandler, this, std::placeholders::_1));
 	context.userInterface.UnregisterCommand("Back");
 }
 
@@ -29,9 +28,5 @@ void Gameover::DrawConsole() const
 
 void Gameover::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
 {
-	/*CommandDescription saveCommandDescription;
-	saveCommandDescription.command = "Save";
-	saveCommandDescription.description = "Save the hero stats and exit the game";
 
-	commandDescriptionsBuffer.emplace_back(std::move(saveCommandDescription));*/
 }

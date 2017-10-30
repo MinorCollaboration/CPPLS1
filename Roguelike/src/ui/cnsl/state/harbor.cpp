@@ -11,7 +11,8 @@ void Harbor::BuyCommandHandler(utils::cmd::Command& command)
 
 	for (auto ship : context.game.currentPort.buyableShips)
 	{
-		if (std::strcmp(name, ship->type) == 0)
+		char* shipName = &utils::chartolower(ship->type);
+		if (std::strcmp(name, shipName) == 0)
 		{
 			if (context.game.ExchangeShip(*ship)) {
 				context.userInterface.DrawConsole("You changed your ship");
@@ -20,9 +21,12 @@ void Harbor::BuyCommandHandler(utils::cmd::Command& command)
 				context.userInterface.DrawConsole("You could not afford that ship");
 			}
 			
+			delete[] shipName;
 			delete[] name.str;
 			return;
 		}
+
+		delete[] shipName;
 	}
 
 	context.userInterface.DrawConsole("Could not find the ship you wanted");
