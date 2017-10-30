@@ -51,19 +51,6 @@ void Sail::Initialize()
 		return;
 	}
 
-	wind = GetRandomWind();
-	context.game.SetSail(wind);
-
-	if (context.game.destinationPort == nullptr) {
-		context.userInterface.SetState(Type::PORT);
-		context.userInterface.DrawConsole("You arrived at the port");
-		return;
-	}
-	else if (context.game.pirateShip != nullptr) {
-		context.userInterface.SetState(Type::FIGHT);
-		return;
-	}
-
 	context.userInterface.RegisterCommand("Next", std::bind(&Sail::NextCommandHandler, this, std::placeholders::_1));
 }
 
