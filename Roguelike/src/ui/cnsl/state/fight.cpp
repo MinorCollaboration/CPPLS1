@@ -14,6 +14,11 @@ void Fight::ShootCommandHandler(utils::cmd::Command& command)
 		if (context.game.currentShip.lifePoints <= 0) {
 			context.userInterface.SetState(Type::GAMEOVER);
 		}
+		else if (context.game.pirateShip->lifePoints <= 0) {
+			context.userInterface.SetState(Type::SAIL);
+			context.userInterface.DrawConsole("You won the fight against the pirate");
+			return;
+		}
 		context.userInterface.DrawConsole("You ended up in a fight, no one won so far");
 		return;
 	}
@@ -78,6 +83,9 @@ void Fight::DrawConsole() const
 
 	std::cout << "You're carrying " << context.game.currentShip.items.size() << " items" << std::endl;
 	std::cout << "And you can spend " << context.game.Gold() << " when you arrive at the next port, those pirates will never find it." << std::endl << std::endl;
+
+	std::cout << "The pirate ship has " << context.game.pirateShip->lifePoints << " life points and " << context.game.pirateShip->cannons.size()
+			  << " cannons" << std::endl << std::endl;
 }
 
 void Fight::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
