@@ -35,7 +35,6 @@ void Repair::Initialize()
 	// End test case
 
 	context.userInterface.RegisterCommand("Repair", std::bind(&Repair::RepairCommandHandler, this, std::placeholders::_1));
-	context.userInterface.RegisterCommand<char>("Repair", std::bind(&Repair::RepairCommandHandler, this, std::placeholders::_1));
 }
 
 void Repair::Terminate()

@@ -7,11 +7,11 @@ const Type Harbor::TYPE(Type::HARBOR);
 
 void Harbor::BuyCommandHandler(utils::cmd::Command& command)
 {
-	std::string name = command.GetParameter<std::string>(0);
+	utils::CharString name = command.GetParameter<utils::CharString>(0);
 
 	for (auto ship : context.game.currentPort.buyableShips)
 	{
-		if (_stricmp(name.c_str(), ship->type) == 0)
+		if (std::strcmp(name, ship->type) == 0)
 		{
 			if (context.game.ExchangeShip(*ship)) {
 				context.userInterface.DrawConsole("You changed your ship");
@@ -20,16 +20,18 @@ void Harbor::BuyCommandHandler(utils::cmd::Command& command)
 				context.userInterface.DrawConsole("You could not afford that ship");
 			}
 			
+			delete[] name.str;
 			return;
 		}
 	}
 
 	context.userInterface.DrawConsole("Could not find the ship you wanted");
+	delete[] name.str;
 }
 
 void Harbor::Initialize()
 {
-	context.userInterface.RegisterCommand<std::string>("Buy", std::bind(&Harbor::BuyCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<utils::CharString>("Buy", std::bind(&Harbor::BuyCommandHandler, this, std::placeholders::_1));
 }
 
 void Harbor::Terminate()

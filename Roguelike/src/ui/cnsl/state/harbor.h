@@ -1,6 +1,8 @@
 #ifndef UI_CNSL_STATE_HARBOR_HEADER_INCLUDED
 #define UI_CNSL_STATE_HARBOR_HEADER_INCLUDED
 
+#include <utils/charstring.hpp>
+
 #include <iostream>
 
 #include "../commanddescription.h"

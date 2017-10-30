@@ -7,44 +7,50 @@ const Type Shop::TYPE(Type::SHOP);
 
 void Shop::BuyCommandHandler(utils::cmd::Command& command)
 {
-	std::string itemName = command.GetParameter<std::string>(0);
+	utils::CharString itemName = command.GetParameter<utils::CharString>(0);
 
 	for (auto item : context.game.items)
 	{
-		if (itemName.compare(item->name) == 0) {
+		if (std::strcmp(itemName, item->name) == 0) {
 			if (context.game.BuyItem(*item))
 				context.userInterface.DrawConsole("You succesfully bought the requested item");
 			else
 				context.userInterface.DrawConsole("Failed to buy the requested item, check your cash and load size");
+
+			delete[] itemName.str;
 			return;
 		}
 	}
 
 	context.userInterface.DrawConsole("Could not find the item");
+	delete[] itemName.str;
 }
 
 void Shop::SellCommandHandler(utils::cmd::Command& command)
 {
-	std::string itemName = command.GetParameter<std::string>(0);
+	utils::CharString itemName = command.GetParameter<utils::CharString>(0);
 
 	for (auto item : context.game.currentShip.items)
 	{
-		if (itemName.compare(item->name) == 0) {
+		if (std::strcmp(itemName, item->name) == 0) {
 			if (context.game.SellItem(*item))
 				context.userInterface.DrawConsole("You succesfully bought the requested item");
 			else
 				context.userInterface.DrawConsole("Failed to buy the requested item, check your cash and load size");
+
+			delete[] itemName.str;
 			return;
 		}
 	}
 
 	context.userInterface.DrawConsole("Could not find the item");
+	delete[] itemName.str;
 }
 
 void Shop::Initialize()
 {
-	context.userInterface.RegisterCommand<std::string>("Buy", std::bind(&Shop::BuyCommandHandler, this, std::placeholders::_1));
-	context.userInterface.RegisterCommand<std::string>("Sell", std::bind(&Shop::SellCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<utils::CharString>("Buy", std::bind(&Shop::BuyCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<utils::CharString>("Sell", std::bind(&Shop::SellCommandHandler, this, std::placeholders::_1));
 }
 
 void Shop::Terminate()
