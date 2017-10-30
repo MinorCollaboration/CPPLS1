@@ -29,11 +29,6 @@ void Repair::RepairCommandHandler(utils::cmd::Command& command)
 
 void Repair::Initialize()
 {
-	// Test case
-	auto ship = &context.game.currentShip; // Use the reference
-	ship->lifePoints -= 2;
-	// End test case
-
 	context.userInterface.RegisterCommand("Repair", std::bind(&Repair::RepairCommandHandler, this, std::placeholders::_1));
 }
 
