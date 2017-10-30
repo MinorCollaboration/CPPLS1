@@ -21,6 +21,7 @@ namespace game
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
+		const bool		ADD_CANNONS_TO_PIRATES = true;
 		const int		STARTING_CASH = 1000000;
 
 		void OnMove();

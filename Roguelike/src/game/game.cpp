@@ -240,6 +240,14 @@ void Game::SetSail(game::Wind wind)
 		if (utils::random(100) <= PIRATE_SPAWN_CHANCE) // Output is smaller than (or equal to) PIRATE_SPANW_CHANCE
 		{
 			pirateShip = ships[utils::random(ships.size() - 1)];
+			pirateShip->lifePoints = pirateShip->maxLifePoints;
+
+			if (ADD_CANNONS_TO_PIRATES) {
+				for (int i = 0; i < utils::random(4, pirateShip->cannonSize); i++)
+				{
+					pirateShip->AddCannon(cannons[utils::random(cannons.size() - 1)]);
+				}
+			}
 		}
 	}
 	else // else: the port defences destroyed the pirate, we can safely enter the port

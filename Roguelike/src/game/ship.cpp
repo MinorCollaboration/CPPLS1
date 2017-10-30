@@ -26,11 +26,25 @@ bool Ship::RemoveCannon(cannonWeight cw)
 	int i = 0;
 	for (auto cannon : cannons)
 	{
-		if (cannon->weight == cw) {
-			delete cannons[i];
-			cannons[i] = nullptr;
-			return true;
+		try {
+			if (cannon)
+			{
+				if (cannon->weight == cw) {
+					delete cannons[i];
+					cannons[i] = nullptr;
+					return true;
+				}
+				else
+				{
+					cannons.pop_back();
+				}
+			}
 		}
+		catch (...)
+		{
+			cannons.pop_back();
+		}
+		
 		i++;
 	}
 	return false;
