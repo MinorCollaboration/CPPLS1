@@ -21,6 +21,7 @@ namespace game
 		bool			isCleared;
 		bool			enableRandomPirates;
 		const double	PIRATE_SPAWN_CHANCE = 35;
+		const int		STARTING_CASH = 1000000;
 
 		void OnMove();
 	public:
@@ -71,7 +72,7 @@ namespace game
 		bool BuyItem(Item&);
 		bool SellItem(Item);
 
-		void ExchangeShip(Ship);
+		bool ExchangeShip(Ship);
 
 		void Clear();
 

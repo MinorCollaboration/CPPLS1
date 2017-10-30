@@ -82,7 +82,7 @@ void Game::Start()
 		game::GetItemMinAmount(*item, currentPort);
 	}
 
-	AddGold(1000); // Starting cash
+	AddGold(STARTING_CASH); // Starting cash
 
 	for (auto ship : ships) {
 		if (utils::random(100) <= 50) { // 50 chance to be buyable
@@ -360,20 +360,35 @@ bool Game::SellItem(Item toSell)
 	return false;
 }
 
-void Game::ExchangeShip(Ship newship)
+bool Game::ExchangeShip(Ship newship)
 {
-	for (auto cannon : currentShip.cannons) {
-		if (newship.cannons.size() < newship.cannonSize) {
-			if (!(cannon->weight == cannonWeight::HEAVY && newship.size == shipSize::klein))
+	if ((goldPieces + (currentShip.price / 2)) > newship.price) {
+		for (auto cannon : currentShip.cannons) {
+			if (newship.cannons.size() < newship.cannonSize) {
+				if (!(cannon->weight == cannonWeight::HEAVY && newship.size == shipSize::klein))
+				{
+					newship.AddCannon(cannon);
+				}
+				else
+				{
+					SellCannon(cannon->weight, 1);
+				}
+			}
+			else
 			{
-				newship.AddCannon(cannon);
+				SellCannon(cannon->weight, 1);
 			}
 		}
-	}
 
-	for (auto item : currentShip.items) {
-		newship.AddItem(*item);
+		for (auto item : currentShip.items) {
+			newship.AddItem(*item);
+		}
+
+		currentShip = newship;
+		return true;
 	}
+	
+	return false;
 }
 
 void Game::OnMove()
