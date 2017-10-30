@@ -15,7 +15,7 @@ void Shop::BuyCommandHandler(utils::cmd::Command& command)
 			if (context.game.BuyItem(*item))
 				context.userInterface.DrawConsole("You succesfully bought the requested item");
 			else
-				context.userInterface.DrawConsole("Failed to buy the requested item, check your cash and load size");
+				context.userInterface.DrawConsole("Failed to buy the requested item, check your cash, load size and the shop's stock");
 
 			delete[] itemName.str;
 			return;

@@ -359,11 +359,14 @@ bool Game::BuyItem(Item& toBuy)
 		for (auto item : currentPort.buyableItems)
 		{
 			if (std::strcmp(item->name, toBuy.name) == 0) {
-				if (goldPieces >= item->price) {
-					item->amount -= 1;
-					UseGold(item->price);
-					return currentShip.AddItem(toBuy);
+				if (item->amount > 0) {
+					if (goldPieces >= item->price) {
+						item->amount -= 1;
+						UseGold(item->price);
+						return currentShip.AddItem(toBuy);
+					}
 				}
+				
 			}
 		}
 	}
