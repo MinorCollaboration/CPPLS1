@@ -34,6 +34,7 @@ void Repair::Initialize()
 
 void Repair::Terminate()
 {
+	context.userInterface.UnregisterCommand("Repair");
 }
 
 void Repair::DrawConsole() const
