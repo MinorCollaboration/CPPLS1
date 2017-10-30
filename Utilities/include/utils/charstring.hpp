@@ -19,7 +19,7 @@ namespace utils
 		friend std::istream& operator>>(std::istream &is, CharString &cs);
 	};
 
-	std::istream& operator>> (std::istream& in, CharString& cs) {
+	static std::istream& operator>> (std::istream& in, CharString& cs) {
 		// read all the data you need to construct an object.
 		//
 		char* text = new char[100];
@@ -43,7 +43,7 @@ namespace utils
 	{
 		return first << concat(rest...);
 	}*/
-	char& chartolower(const char* a) {
+	static char& chartolower(const char* a) {
 		char* b = _strdup(a);
 		char* start = b;
 		while (*b) {
@@ -55,7 +55,7 @@ namespace utils
 	}
 
 	// check if there are differences (besides case)
-	int icompare(const char* a, const char* b) noexcept
+	static int icompare(const char* a, const char* b) noexcept
 	{
 		return strcmp(&chartolower(a), &chartolower(b));
 	}
@@ -65,7 +65,7 @@ namespace utils
 	 */
 	
 	// Check the number of differences
-	int istrcmp(const char* a, const char* b) noexcept
+	static int istrcmp(const char* a, const char* b) noexcept
 	{
 		for (;; a++, b++)
 		{

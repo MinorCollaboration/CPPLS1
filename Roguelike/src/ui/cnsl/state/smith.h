@@ -1,6 +1,7 @@
 #ifndef UI_CNSL_STATE_SMITH_HEADER_INCLUDED
 #define UI_CNSL_STATE_SMITH_HEADER_INCLUDED
 
+#include <utils/charstring.hpp>
 #include <utils/int.hpp>
 
 #include <iostream>

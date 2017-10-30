@@ -7,25 +7,36 @@ const Type Smith::TYPE(Type::SMITH);
 
 void Smith::BuyCommandHandler(utils::cmd::Command& command)
 {
-	std::string cannonType = command.GetParameter<std::string>(0);
+	utils::CharString cannonType = command.GetParameter<utils::CharString>(0);
 	int amount = 1;
-	if (command.GetAmountOfParameters() > 1) {
-		if (utils::isnumeric(*&command.GetParameter<std::string>(1))) {
-			amount = stoi(command.GetParameter<std::string>(1));
-		}
+	utils::CharString amountParam = command.GetParameter<utils::CharString>(1);
+	if (atoi(amountParam))
+	{
+		amount = atoi(amountParam);
+	}
+	else
+	{
+		context.userInterface.DrawConsole("Not a valid amount");
+		delete[] amountParam.str;
+		delete[] cannonType.str;
+		return;
 	}
 
 	game::cannonWeight cw;
-	if (cannonType.compare("light") == 0) cw = game::cannonWeight::LIGHT;
-	else if (cannonType.compare("normal") == 0) cw = game::cannonWeight::MEDIUM;
-	else if (cannonType.compare("heavy") == 0) cw = game::cannonWeight::HEAVY;
+	if (std::strcmp(cannonType, "light") == 0) cw = game::cannonWeight::LIGHT;
+	else if (std::strcmp(cannonType, "normal") == 0) cw = game::cannonWeight::MEDIUM;
+	else if (std::strcmp(cannonType, "heavy") == 0) cw = game::cannonWeight::HEAVY;
 	else {
 		context.userInterface.DrawConsole("Not a valid cannon type, try lowercase");
+		delete[] amountParam.str;
+		delete[] cannonType.str;
 		return;
 	}
 
 	if (cw == game::cannonWeight::HEAVY && context.game.currentShip.size == game::shipSize::klein) {
 		context.userInterface.DrawConsole("This cannon can not be placed at your ship, its too heavy");
+		delete[] amountParam.str;
+		delete[] cannonType.str;
 		return;
 	}
 
@@ -35,25 +46,37 @@ void Smith::BuyCommandHandler(utils::cmd::Command& command)
 		context.userInterface.DrawConsole("Could not buy that cannon, do you have enough space remaining?");
 	else
 		context.userInterface.DrawConsole("We bought one or more of the cannons of the given type");
+	
+	delete[] amountParam.str;
+	delete[] cannonType.str;
 	return;
 }
 
 void Smith::SellCommandHandler(utils::cmd::Command& command)
 {
-	std::string cannonType = command.GetParameter<std::string>(0);
+	utils::CharString cannonType = command.GetParameter<utils::CharString>(0);
 	int amount = 1;
-	if (command.GetAmountOfParameters() > 1) {
-		if (utils::isnumeric(*&command.GetParameter<std::string>(1))) {
-			amount = stoi(command.GetParameter<std::string>(1));
-		}
+	utils::CharString amountParam = command.GetParameter<utils::CharString>(1);
+	if (atoi(amountParam))
+	{
+		amount = atoi(amountParam);
+	}
+	else
+	{
+		context.userInterface.DrawConsole("Not a valid amount");
+		delete[] amountParam.str;
+		delete[] cannonType.str;
+		return;
 	}
 
 	game::cannonWeight cw;
-	if (cannonType.compare("light") == 0) cw = game::cannonWeight::LIGHT;
-	else if (cannonType.compare("normal") == 0) cw = game::cannonWeight::MEDIUM;
-	else if (cannonType.compare("heavy") == 0) cw = game::cannonWeight::HEAVY;
+	if (std::strcmp(cannonType, "light") == 0) cw = game::cannonWeight::LIGHT;
+	else if (std::strcmp(cannonType, "normal") == 0) cw = game::cannonWeight::MEDIUM;
+	else if (std::strcmp(cannonType, "heavy") == 0) cw = game::cannonWeight::HEAVY;
 	else {
 		context.userInterface.DrawConsole("Not a valid cannon type, try lowercase");
+		delete[] amountParam.str;
+		delete[] cannonType.str;
 		return;
 	}
 
@@ -63,13 +86,16 @@ void Smith::SellCommandHandler(utils::cmd::Command& command)
 		context.userInterface.DrawConsole("Could not sell a cannon of that type");
 	else
 		context.userInterface.DrawConsole("We sold one or more of the cannons of the given type");
+	
+	delete[] amountParam.str;
+	delete[] cannonType.str;
 	return;
 }
 
 void Smith::Initialize()
 {
-	context.userInterface.RegisterCommand<std::string, std::string>("Buy", std::bind(&Smith::BuyCommandHandler, this, std::placeholders::_1));
-	context.userInterface.RegisterCommand<std::string, std::string>("Sell", std::bind(&Smith::SellCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<utils::CharString, utils::CharString>("Buy", std::bind(&Smith::BuyCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<utils::CharString, utils::CharString>("Sell", std::bind(&Smith::SellCommandHandler, this, std::placeholders::_1));
 }
 
 void Smith::Terminate()
