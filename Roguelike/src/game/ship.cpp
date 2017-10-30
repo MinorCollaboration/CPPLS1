@@ -34,10 +34,6 @@ bool Ship::RemoveCannon(cannonWeight cw)
 					cannons[i] = nullptr;
 					return true;
 				}
-				else
-				{
-					cannons.pop_back();
-				}
 			}
 		}
 		catch (...)

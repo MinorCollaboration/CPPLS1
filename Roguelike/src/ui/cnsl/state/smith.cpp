@@ -51,7 +51,7 @@ void Smith::SellCommandHandler(utils::cmd::Command& command)
 	game::cannonWeight cw;
 	if (cannonType.compare("light") == 0) cw = game::cannonWeight::LIGHT;
 	else if (cannonType.compare("normal") == 0) cw = game::cannonWeight::MEDIUM;
-	else if (cannonType.compare("heavy")) cw = game::cannonWeight::HEAVY;
+	else if (cannonType.compare("heavy") == 0) cw = game::cannonWeight::HEAVY;
 	else {
 		context.userInterface.DrawConsole("Not a valid cannon type, try lowercase");
 		return;
