@@ -48,6 +48,7 @@ void Sail::Initialize()
 {
 	if (context.game.destinationPort == nullptr) {
 		context.userInterface.SetState(Type::PORT);
+		return;
 	}
 
 	wind = GetRandomWind();

@@ -29,12 +29,12 @@ void Smith::BuyCommandHandler(utils::cmd::Command& command)
 		return;
 	}
 
-	bool result = context.game.BuyCannon(cw);
+	bool result = context.game.BuyCannon(cw, amount);
 
 	if (!result)
-		context.userInterface.DrawConsole("Could not buy a cannon of that type");
+		context.userInterface.DrawConsole("Could not buy that cannon, do you have enough space remaining?");
 	else
-		context.userInterface.DrawConsole("We sold one or more of the cannons of the given type");
+		context.userInterface.DrawConsole("We bought one or more of the cannons of the given type");
 	return;
 }
 
@@ -57,7 +57,7 @@ void Smith::SellCommandHandler(utils::cmd::Command& command)
 		return;
 	}
 
-	bool result = context.game.SellCannon(cw);
+	bool result = context.game.SellCannon(cw, amount);
 
 	if (!result)
 		context.userInterface.DrawConsole("Could not sell a cannon of that type");
@@ -81,7 +81,25 @@ void Smith::Terminate()
 void Smith::DrawConsole() const
 {
 	std::cout << "You're at the smith, here you can buy or sell your cannons" << std::endl << std::endl;
-	std::cout << "What do you want to do?";
+	std::cout << "You have " << context.game.Gold() << " gold coins. What do you want to do?";
+
+	int lightCannon = 0, normalCannon = 0, heavyCannon = 0;
+	for (auto cannon : context.game.currentShip.cannons) {
+		switch (cannon->weight) {
+		case game::cannonWeight::LIGHT: lightCannon++; break;
+		case game::cannonWeight::MEDIUM: normalCannon++; break;
+		case game::cannonWeight::HEAVY: heavyCannon++; break;
+		}
+	}
+
+	if (lightCannon > 0 || normalCannon > 0 || heavyCannon > 0) {
+		std::cout << "You current loadout is: " << std::endl;
+		if (lightCannon > 0) std::cout << lightCannon << " light cannons" << std::endl;
+		if (normalCannon > 0) std::cout << normalCannon << " medium cannons" << std::endl;
+		if (heavyCannon > 0) std::cout << heavyCannon << " heavy cannons" << std::endl;
+	}
+
+	std::cout << "You have a total space for " << context.game.currentShip.cannonSize << " cannons";
 }
 
 void Smith::GetAvailableCommands(utils::Array<CommandDescription>& commandDescriptionsBuffer) const
