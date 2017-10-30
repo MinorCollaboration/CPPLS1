@@ -7,14 +7,20 @@
 
 using namespace game;
 
-bool Ship::AddCannon(Cannon* cannon)
+bool Ship::AddCannon(Cannon* toAdd)
 {
-	if (cannons.size() < cannonSize) {
-		if (!(size == shipSize::klein && cannon->weight == cannonWeight::HEAVY)) {
-			cannons.addItem(cannon);
+	if (!(size == shipSize::klein && toAdd->weight == cannonWeight::HEAVY)) {
+		if (cannons.size() < cannonSize) {
+			for (auto& cannon : cannons) {
+				if (cannon->weight == toAdd->weight) {
+					cannon->amount += 1;
+					return true;
+				}
+			}
+			toAdd->amount = 1;
+			cannons.addItem(toAdd);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -48,19 +54,14 @@ bool Ship::RemoveCannon(cannonWeight cw)
 
 bool Ship::AddItem(Item& toAdd)
 {
-	Item* clone = new Item(toAdd);
 	if (items.size() < loadSize) {
-		int i = 0;
-		for (auto item : items)
-		{
-			if (std::strcmp(item->name, clone->name) == 0)
-			{
-				items[i]->amount += 1;
-				delete[] clone;
+		for (auto item : items) {
+			if (std::strcmp(item->name, toAdd.name) == 0) {
+				item->amount += 1;
 				return true;
 			}
-			i++;
 		}
+		Item* clone = new Item(toAdd);
 		clone->amount = 1;
 		items.addItem(clone);
 		return true;

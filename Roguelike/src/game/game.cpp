@@ -260,9 +260,12 @@ void Game::ShootPlayer()
 {
 	for (auto cannon : pirateShip->cannons)
 	{
-		currentShip.lifePoints -= cannon->Shoot();
-		if (currentShip.lifePoints <= 0)
-			break;
+		for (int i = 0; i < cannon->amount; i++)
+		{
+			currentShip.lifePoints -= cannon->Shoot();
+			if (currentShip.lifePoints <= 0)
+				break;
+		}
 	}
 }
 
@@ -270,11 +273,15 @@ void Game::ShootPirate()
 {
 	for (auto cannon : currentShip.cannons)
 	{
-		pirateShip->lifePoints -= cannon->Shoot();
-		if (pirateShip->lifePoints <= 0) {
-			pirateShip = nullptr;
-			break;
+		for (int i = 0; i < cannon->amount; i++)
+		{
+			pirateShip->lifePoints -= cannon->Shoot();
+			if (pirateShip->lifePoints <= 0) {
+				pirateShip = nullptr;
+				break;
+			}
 		}
+		
 	}
 }
 
@@ -285,29 +292,31 @@ void Game::Surrender()
 
 bool Game::BuyCannon(cannonWeight cw)
 {
-	return BuyCannon(cw, 1);
+	if (!(currentShip.size == shipSize::klein && cw == cannonWeight::HEAVY)) {
+		if (currentShip.cannons.size() < currentShip.cannonSize) {
+			for (auto cannon : cannons) {
+				if (cannon->weight == cw) {
+					if (goldPieces >= cannon->price) {
+						if (currentShip.AddCannon(cannon)) {
+							UseGold(cannon->price);
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 bool Game::BuyCannon(cannonWeight cw, int amount)
 {
 	bool addedSome = false;
-	Cannon* toAdd = nullptr;
-	for (auto cannon : cannons)
-	{
-		if (cannon->weight == cw) {
-			toAdd = cannon;
-		}
-	}
-
-	if (!(currentShip.size == shipSize::klein && cw == cannonWeight::HEAVY)) {
-		for (int i = 0; i < amount; i++) {
-			if (currentShip.AddCannon(toAdd)) {
-				UseGold(toAdd->price);
-				addedSome = true;
-			}
-		}
-	}
 	
+	for (int i = 0; i < amount; i++)
+		if (BuyCannon(cw)) addedSome = true;
+
 	return addedSome;
 }
 

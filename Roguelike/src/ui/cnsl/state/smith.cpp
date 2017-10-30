@@ -107,22 +107,20 @@ void Smith::Terminate()
 void Smith::DrawConsole() const
 {
 	std::cout << "You're at the smith, here you can buy or sell your cannons" << std::endl << std::endl;
-	std::cout << "You have " << context.game.Gold() << " gold coins." << std::endl <<" What do you want to do?";
+	std::cout << "You have " << context.game.Gold() << " gold coins. What do you want to do?" << std::endl;
 
-	int lightCannon = 0, normalCannon = 0, heavyCannon = 0;
-	for (auto cannon : context.game.currentShip.cannons) {
-		switch (cannon->weight) {
-		case game::cannonWeight::LIGHT: lightCannon++; break;
-		case game::cannonWeight::MEDIUM: normalCannon++; break;
-		case game::cannonWeight::HEAVY: heavyCannon++; break;
-		}
-	}
-
-	if (lightCannon > 0 || normalCannon > 0 || heavyCannon > 0) {
+	if (context.game.currentShip.cannons.size() > 0) {
 		std::cout << "You current loadout is: " << std::endl;
-		if (lightCannon > 0) std::cout << lightCannon << " light cannons" << std::endl;
-		if (normalCannon > 0) std::cout << normalCannon << " medium cannons" << std::endl;
-		if (heavyCannon > 0) std::cout << heavyCannon << " heavy cannons" << std::endl;
+		for (auto cannon : context.game.currentShip.cannons) {
+			if (cannon->amount > 0) {
+				switch (cannon->weight) {
+				case game::cannonWeight::LIGHT: std::cout << cannon->amount << " light cannon(s)" << std::endl; break;
+				case game::cannonWeight::MEDIUM: std::cout << cannon->amount << " medium cannon(s)" << std::endl; break;
+				case game::cannonWeight::HEAVY: std::cout << cannon->amount << " heavy cannon(s)" << std::endl; break;
+				}
+			}
+			
+		}
 	}
 
 	std::cout << "You have a total space for " << context.game.currentShip.cannonSize << " cannons";

@@ -20,6 +20,8 @@ namespace game
 	class Cannon
 	{
 	public:
+		int amount = 1;
+
 		int price;
 		int minDamage;
 		int maxDamage;
