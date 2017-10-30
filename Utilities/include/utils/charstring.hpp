@@ -43,7 +43,7 @@ namespace utils
 	{
 		return first << concat(rest...);
 	}*/
-	char* chartolower(const char* a) {
+	char& chartolower(const char* a) {
 		char* b = _strdup(a);
 		char* start = b;
 		while (*b) {
@@ -51,13 +51,13 @@ namespace utils
 			b++;
 		}
 
-		return start;
+		return *start;
 	}
 
 	// check if there are differences (besides case)
 	int icompare(const char* a, const char* b) noexcept
 	{
-		return strcmp(chartolower(a), chartolower(b));
+		return strcmp(&chartolower(a), &chartolower(b));
 	}
 
 	/**

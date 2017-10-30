@@ -10,29 +10,22 @@ void Port::SailCommandHandler(utils::cmd::Command& command)
 	utils::CharString destinationName = command.GetParameter<utils::CharString>(0);
 
 	for (auto port : context.game.ports) {
-		char* portName = _strdup(port->name);
-		char* start = *&portName;
-		while (*portName) {
-			*portName = tolower(*portName);
-			portName++;
-		}
-
-		if (std::strcmp(destinationName, start) == 0)
+		char* portName = &utils::chartolower(port->name);
+		if (std::strcmp(destinationName, portName) == 0)
 		{
 			if (game::GetPortDistance(*port, context.game.currentPort) == 0) {
 				context.userInterface.DrawConsole("This port cannot be sailed to as it is the same or cannot be found");
-				delete[] start;
 			}
 			else {
 				context.game.LeavePort(*port);
 				context.userInterface.SetState(Type::SAIL);
-				delete[] start;
 			}
 			delete[] destinationName.str;
+			delete[] portName;
 			return;
 		}
-		
-		delete[] start;
+
+		delete[] portName;
 	}
 
 	context.userInterface.DrawConsole("Port does not exist");
