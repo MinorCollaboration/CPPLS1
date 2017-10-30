@@ -79,6 +79,8 @@ void Smith::SellCommandHandler(utils::cmd::Command& command)
 		delete[] cannonType.str;
 		return;
 	}
+	
+	
 
 	bool result = context.game.SellCannon(cw, amount);
 

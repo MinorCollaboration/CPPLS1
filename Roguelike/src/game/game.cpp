@@ -296,7 +296,10 @@ void Game::Surrender()
 bool Game::BuyCannon(cannonWeight cw)
 {
 	if (!(currentShip.size == shipSize::klein && cw == cannonWeight::HEAVY)) {
-		if (currentShip.cannons.size() < currentShip.cannonSize) {
+		int cannonCount = 0;
+		for (auto cannon : currentShip.cannons) cannonCount += cannon->amount;
+
+		if (cannonCount < currentShip.cannonSize) {
 			for (auto cannon : cannons) {
 				if (cannon->weight == cw) {
 					if (goldPieces >= cannon->price) {
@@ -348,7 +351,10 @@ bool Game::SellCannon(cannonWeight cw, int amount)
 
 bool Game::BuyItem(Item& toBuy)
 {
-	if (currentShip.items.size() < currentShip.loadSize)
+	int itemCount = 0;
+	for (auto item : currentShip.items) itemCount += item->amount;
+
+	if (itemCount < currentShip.loadSize)
 	{
 		for (auto item : currentPort.buyableItems)
 		{
